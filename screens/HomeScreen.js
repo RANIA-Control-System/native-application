@@ -9,12 +9,13 @@ import {
   TouchableOpacity,
   View
 } from "react-native";
-
-import { MonoText } from "../components/StyledText";
+import TopBar from "../components/TopBar";
+import { FeatureText } from "../components/StyledText";
 
 export default function HomeScreen() {
   return (
     <View style={styles.container}>
+      <TopBar />
       <ScrollView
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
@@ -38,7 +39,7 @@ export default function HomeScreen() {
           <View
             style={[styles.codeHighlightContainer, styles.homeScreenFilename]}
           >
-            <MonoText>screens/HomeScreen.js</MonoText>
+            <FeatureText>screens/HomeScreen.js</FeatureText>
           </View>
 
           <Text style={styles.getStartedText}>
@@ -64,9 +65,9 @@ export default function HomeScreen() {
         <View
           style={[styles.codeHighlightContainer, styles.navigationFilename]}
         >
-          <MonoText style={styles.codeHighlightText}>
+          <FeatureText style={styles.codeHighlightText}>
             navigation/MainTabNavigator.js
-          </MonoText>
+          </FeatureText>
         </View>
       </View>
     </View>
