@@ -1,10 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-
+import { Button, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-
+import { DrawerActions } from "react-navigation";
 import { FeatureText } from "../components/StyledText";
-
 const styles = StyleSheet.create({
   topBarContainer: {
     backgroundColor: Colors.secondaryColor,
@@ -18,12 +16,15 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function TopBar() {
+export default function TopBar(props) {
   return (
     <View style={styles.topBarContainer}>
-      <FeatureText style={styles.topBarText}>
-        RANIA Control System |{" "}
-      </FeatureText>
+      <Button
+        onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
+        title="Info"
+        color="white"
+      />
+      <FeatureText style={styles.topBarText}>RANIA Control System</FeatureText>
     </View>
   );
 }
