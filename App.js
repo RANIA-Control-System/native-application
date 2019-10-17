@@ -39,7 +39,8 @@ async function loadResourcesAsync() {
       ...Ionicons.font,
       // We include SpaceMono because we use it in HomeScreen.js. Feel free to
       // remove this if you are not using it in your app
-      "young-serif": require("./assets/fonts/YoungSerif-Regular.otf")
+      "young-serif": require("./assets/fonts/YoungSerif-Regular.otf"),
+      "source-serif": require("./assets/fonts/SourceSerifPro-Regular.otf")
     })
   ]);
 }
