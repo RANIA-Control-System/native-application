@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: 140,
+    marginLeft: 105,
     borderWidth: 2,
     borderColor: Colors.primaryColor,
     borderRadius: 7,
@@ -50,7 +50,7 @@ export default function ModuleItem(props) {
         <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
         <Text style={styles.innerText}>{props.text}</Text>
       </View>
-      <PrimaryButton text="View" />
+      <PrimaryButton text="View" size="md" />
     </View>
   );
 }

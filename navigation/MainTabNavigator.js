@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, Text } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
@@ -7,6 +7,8 @@ import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+
+import PrimaryButton from "../components/PrimaryButton";
 
 import Colors from "../constants/Colors";
 
@@ -23,17 +25,12 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  title: "Home",
+  title: "Medical Info",
   // drawerLockMode: "locked-open",
   drawerIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
-      }
-    />
+    <React.Fragment>
+      {focused ? <Text> </Text> : <PrimaryButton text="View" size="sm" />}
+    </React.Fragment>
   )
 };
 
@@ -47,12 +44,11 @@ const LinksStack = createStackNavigator(
 );
 
 LinksStack.navigationOptions = {
-  title: "Links",
+  title: "House Info",
   drawerIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-link" : "md-link"}
-    />
+    <React.Fragment>
+      {focused ? <Text> </Text> : <PrimaryButton text="View" size="sm" />}
+    </React.Fragment>
   )
 };
 
@@ -66,12 +62,11 @@ const SettingsStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-  title: "Settings",
+  title: "Other Info",
   drawerIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
-    />
+    <React.Fragment>
+      {focused ? <Text> </Text> : <PrimaryButton text="View" size="sm" />}
+    </React.Fragment>
   )
 };
 
@@ -86,13 +81,15 @@ const tabNavigator = createDrawerNavigator(
   {
     drawerBackgroundColor: Colors.primaryColor,
     overlayColor: "transparent",
-    drawerType: "slide  ",
+    drawerType: "slide",
+    drawerWidth: 375,
     contentOptions: {
       activeTintColor: Colors.highlightColor,
       labelStyle: {
         fontFamily: "young-serif",
         color: "white",
-        fontSize: 30
+        fontSize: 35,
+        marginLeft: 70
       }
     }
   }
