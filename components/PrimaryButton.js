@@ -1,21 +1,16 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import PrimaryButton from "../components/PrimaryButton";
 
 const styles = StyleSheet.create({
   itemContainer: {
-    backgroundColor: "white",
-    height: 125,
-    width: 600,
+    backgroundColor: Colors.highlightColor,
+    height: 50,
+    width: 140,
     margin: 15,
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row",
-    marginLeft: 140,
-    borderWidth: 2,
-    borderColor: Colors.primaryColor,
-    borderRadius: 7,
+    borderRadius: 10,
     shadowColor: "black",
     shadowColor: "#000",
     shadowOffset: {
@@ -27,8 +22,8 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   innerText: {
-    fontSize: 40,
-    marginLeft: 15,
+    fontSize: 35,
+    color: "white",
     fontFamily: "fengardo-neue"
   }
 });
@@ -37,7 +32,6 @@ export default function ModuleItem(props) {
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.innerText}>{props.text}</Text>
-      <PrimaryButton text="View" />
     </View>
   );
 }

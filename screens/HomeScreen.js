@@ -1,11 +1,12 @@
 import * as WebBrowser from "expo-web-browser";
-import React from "react";
+import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import TopBar from "../components/TopBar";
 import ModuleItem from "../components/ModuleItem";
 import { FeatureText } from "../components/StyledText";
 
-export default function HomeScreen() {
+export default function HomeScreen(props) {
+  useEffect(() => props.navigation.openDrawer(), []);
   return (
     <React.Fragment>
       <TopBar />
