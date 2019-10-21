@@ -3,6 +3,8 @@ import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 import PrimaryButton from "../components/PrimaryButton";
 
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
@@ -26,18 +28,30 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4
   },
+  iconTextContainer: {
+    flexDirection: "row"
+  },
   innerText: {
     fontSize: 40,
-    marginLeft: 15,
     fontFamily: "fengardo-neue"
+  },
+  icon: {
+    fontSize: 40,
+    marginLeft: 15,
+    marginRight: 15,
+    color: Colors.primaryColor
   }
 });
 
 export default function ModuleItem(props) {
   return (
     <View style={styles.itemContainer}>
-      <Text style={styles.innerText}>{props.text}</Text>
+      <View style={styles.iconTextContainer}>
+        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
+        <Text style={styles.innerText}>{props.text}</Text>
+      </View>
       <PrimaryButton text="View" />
     </View>
   );
 }
+//

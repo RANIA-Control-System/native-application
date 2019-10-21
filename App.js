@@ -5,6 +5,26 @@ import React, { useState } from "react";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import {
+  faCheckSquare,
+  faCoffee,
+  faUserMd,
+  faHiking,
+  faDeaf,
+  faQuestionCircle
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  fab,
+  faCheckSquare,
+  faCoffee,
+  faUserMd,
+  faHiking,
+  faDeaf,
+  faQuestionCircle
+);
 import AppNavigator from "./navigation/AppNavigator";
 
 export default function App(props) {
