@@ -13,7 +13,9 @@ import {
   faUserMd,
   faHiking,
   faDeaf,
-  faQuestionCircle
+  faQuestionCircle,
+  faClipboardList,
+  faCalendar
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -23,7 +25,9 @@ library.add(
   faUserMd,
   faHiking,
   faDeaf,
-  faQuestionCircle
+  faQuestionCircle,
+  faClipboardList,
+  faCalendar
 );
 import AppNavigator from "./navigation/AppNavigator";
 

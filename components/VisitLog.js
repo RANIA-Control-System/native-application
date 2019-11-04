@@ -1,20 +1,18 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import NavButton from "./NavButton";
-
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
-    height: 125,
+    height: 75,
     width: 600,
-    margin: 15,
+    margin: 10,
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: 105,
     borderWidth: 2,
     borderColor: Colors.primaryColor,
     borderRadius: 7,
@@ -32,7 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   innerText: {
-    fontSize: 40,
+    fontSize: 35,
     fontFamily: "fengardo-neue"
   },
   icon: {
@@ -43,14 +41,15 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function ModuleItem(props) {
+export default function VisitLog(props) {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
-        <Text style={styles.innerText}>{props.text}</Text>
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
+        <Text style={styles.innerText}>
+          {props.date} at {props.time}
+        </Text>
       </View>
-      <NavButton text="View" size="md" navlocation={props.navlocation} />
     </View>
   );
 }

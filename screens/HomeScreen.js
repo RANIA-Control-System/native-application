@@ -14,10 +14,22 @@ export default function HomeScreen(props) {
         style={styles.container}
         contentContainerStyle={styles.contentContainer}
       >
-        <ModuleItem text="Remote Visit" icon="user-md" />
-        <ModuleItem text="Fall Detection" icon="hiking" />
-        <ModuleItem text="Natural Language" icon="deaf" />
-        <ModuleItem text="Module Name" icon="question-circle" />
+        <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
+        <ModuleItem
+          text="Fall Detection"
+          icon="hiking"
+          navlocation="RemoteVist"
+        />
+        <ModuleItem
+          text="Natural Language"
+          icon="deaf"
+          navlocation="RemoteVist"
+        />
+        <ModuleItem
+          text="Module Name"
+          icon="question-circle"
+          navlocation="RemoteVist"
+        />
         <DevelopmentModeNotice />
       </ScrollView>
     </React.Fragment>

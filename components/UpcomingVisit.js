@@ -1,20 +1,18 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import NavButton from "./NavButton";
-
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faClipboardList, faCalendar } from "@fortawesome/free-solid-svg-icons";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
     height: 125,
     width: 600,
-    margin: 15,
-    justifyContent: "space-between",
+    margin: 10,
+    justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
-    marginLeft: 105,
     borderWidth: 2,
     borderColor: Colors.primaryColor,
     borderRadius: 7,
@@ -31,9 +29,18 @@ const styles = StyleSheet.create({
   iconTextContainer: {
     flexDirection: "row"
   },
+  upcomingContainer: {
+    flexDirection: "column"
+  },
   innerText: {
+    fontSize: 35,
+    fontFamily: "fengardo-neue",
+    textAlign: "center"
+  },
+  innerTextEmphasize: {
     fontSize: 40,
-    fontFamily: "fengardo-neue"
+    fontFamily: "fengardo-neue",
+    textAlign: "center"
   },
   icon: {
     fontSize: 40,
@@ -43,14 +50,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function ModuleItem(props) {
+export default function UpcomingVisit(props) {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
-        <Text style={styles.innerText}>{props.text}</Text>
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faCalendar} />
+        <Text style={styles.innerText}>Next Appointment:</Text>
       </View>
-      <NavButton text="View" size="md" navlocation={props.navlocation} />
+      <View style={styles.upcomingContainer}>
+        <Text style={styles.innerText}>{props.date.split(" ")[0]}</Text>
+        <Text style={styles.innerText}>{props.date.split(" ")[1]}</Text>
+        <Text style={styles.innerTextEmphasize}>{props.time}</Text>
+      </View>
     </View>
   );
 }

@@ -1,16 +1,20 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
+import { withNavigation } from "react-navigation";
+
 import Colors from "../constants/Colors";
+import RemoteVisitScreen from "../screens/RemoteVisitScreen";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: Colors.highlightColor,
     height: 50,
-    width: 140,
     margin: 15,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    paddingLeft: 25,
+    paddingRight: 25,
     shadowColor: "black",
     shadowColor: "#000",
     shadowOffset: {
@@ -52,14 +56,30 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function ModuleItem(props) {
-  return (
-    <View
-      style={props.size == "sm" ? styles.itemContainerSm : styles.itemContainer}
-    >
-      <Text style={props.size == "sm" ? styles.innerTextSm : styles.innerText}>
-        {props.text}
-      </Text>
-    </View>
-  );
+class NavButton extends React.Component {
+  render() {
+    return (
+      <View
+        style={
+          this.props.size == "sm"
+            ? styles.itemContainerSm
+            : styles.itemContainer
+        }
+      >
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate(this.props.navlocation)}
+          style={styles.button}
+        >
+          <Text
+            style={
+              this.props.size == "sm" ? styles.innerTextSm : styles.innerText
+            }
+          >
+            {this.props.text}
+          </Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
 }
+export default withNavigation(NavButton);

@@ -26,12 +26,10 @@ const styles = StyleSheet.create({
 export default function TopBar(props) {
   return (
     <View style={styles.topBarContainer}>
-      {/* <Button
-        onPress={() => props.navigation.dispatch(DrawerActions.toggleDrawer())}
-        title="Info"
-        color="white"
-      /> */}
-      <FeatureText style={styles.topBarText}>RANIA Control System</FeatureText>
+      <FeatureText style={styles.topBarText}>
+        RANIA Control System
+        {props.screen === undefined ? "" : `| ${props.screen}`}
+      </FeatureText>
     </View>
   );
 }
