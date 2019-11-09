@@ -53,30 +53,25 @@ const styles = StyleSheet.create({
     fontFamily: "fengardo-neue"
   }
 });
-// @TODO: Make touchable area fit the entire button
 class NavButton extends React.Component {
   render() {
     return (
-      <View
+      <TouchableHighlight
+        onPress={() => this.props.navigation.navigate(this.props.navlocation)}
         style={
           this.props.size == "sm"
             ? styles.itemContainerSm
             : styles.itemContainer
         }
       >
-        <TouchableHighlight
-          onPress={() => this.props.navigation.navigate(this.props.navlocation)}
-          style={styles.button}
+        <Text
+          style={
+            this.props.size == "sm" ? styles.innerTextSm : styles.innerText
+          }
         >
-          <Text
-            style={
-              this.props.size == "sm" ? styles.innerTextSm : styles.innerText
-            }
-          >
-            {this.props.text}
-          </Text>
-        </TouchableHighlight>
-      </View>
+          {this.props.text}
+        </Text>
+      </TouchableHighlight>
     );
   }
 }

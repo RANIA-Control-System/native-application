@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     fontFamily: "fengardo-neue"
   }
 });
-// @TODO: Make touchable area fit the entire button
+
 export default function ShowViewButton(props) {
   const [viewState, setViewState] = useState(0);
 
@@ -56,17 +56,16 @@ export default function ShowViewButton(props) {
   }
   return (
     <React.Fragment>
-      <View
+      <TouchableHighlight
+        onPress={toggleState}
         style={
           props.size == "wide" ? styles.itemContainerWide : styles.itemContainer
         }
       >
-        <TouchableHighlight onPress={toggleState} style={styles.button}>
-          <Text style={styles.innerText}>
-            {viewState === 0 ? props.text : "Hide"}
-          </Text>
-        </TouchableHighlight>
-      </View>
+        <Text style={styles.innerText}>
+          {viewState === 0 ? props.text : "Hide"}
+        </Text>
+      </TouchableHighlight>
       {viewState === 0 ? null : props.children}
     </React.Fragment>
   );
