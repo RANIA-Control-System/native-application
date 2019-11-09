@@ -8,6 +8,7 @@ import HomeScreen from "../screens/HomeScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import RemoteVisitScreen from "../screens/RemoteVisitScreen";
+import PatientInfoScreen from "../screens/PatientInfoScreen";
 
 import NavButton from "../components/NavButton";
 
@@ -56,6 +57,25 @@ RemoteStack.navigationOptions = {
 
 RemoteStack.path = "";
 
+const PatientInfoStack = createStackNavigator(
+  {
+    Patient: PatientInfoScreen
+  },
+  config
+);
+
+PatientInfoStack.navigationOptions = {
+  title: "Patient Info",
+  // drawerLockMode: "locked-open",
+  drawerIcon: ({ focused }) => (
+    <React.Fragment>
+      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
+    </React.Fragment>
+  )
+};
+
+PatientInfoStack.path = "";
+
 const LinksStack = createStackNavigator(
   {
     Links: LinksScreen
@@ -94,8 +114,9 @@ SettingsStack.path = "";
 
 const tabNavigator = createDrawerNavigator(
   {
-    RemoteStack,
+    PatientInfoStack,
     HomeStack,
+    RemoteStack,
     LinksStack,
     SettingsStack
   },
