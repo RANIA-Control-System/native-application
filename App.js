@@ -15,7 +15,10 @@ import {
   faDeaf,
   faQuestionCircle,
   faClipboardList,
-  faCalendar
+  faCalendar,
+  faClock,
+  faNotesMedical,
+  faArchive
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -27,7 +30,10 @@ library.add(
   faDeaf,
   faQuestionCircle,
   faClipboardList,
-  faCalendar
+  faCalendar,
+  faClock,
+  faNotesMedical,
+  faArchive
 );
 import AppNavigator from "./navigation/AppNavigator";
 

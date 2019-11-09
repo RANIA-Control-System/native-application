@@ -2,17 +2,26 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faClipboardList } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClipboardList,
+  faUserMd,
+  faClock,
+  faArchive,
+  faNotesMedical
+} from "@fortawesome/free-solid-svg-icons";
+import ShowViewButton from "../components/ShowViewButton";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
-    height: 75,
     width: 600,
     margin: 10,
-    justifyContent: "space-between",
-    alignItems: "center",
+    flex: 1,
+    flexWrap: "wrap",
+    alignContent: "space-around",
     flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
     borderWidth: 2,
     borderColor: Colors.primaryColor,
     borderRadius: 7,
@@ -27,7 +36,14 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   iconTextContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    width: 200,
+    marginBottom: 10
+  },
+  iconTextContainerWide: {
+    flexDirection: "row",
+    width: 500,
+    marginBottom: 10
   },
   innerText: {
     fontSize: 35,
@@ -40,16 +56,37 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-
+//@TODO: Implement data fetching for individual visit
 export default function VisitLog(props) {
   return (
     <View style={styles.itemContainer}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
-        <Text style={styles.innerText}>
-          {props.date} at {props.time}
-        </Text>
-      </View>
+      <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
+      <Text style={styles.innerText}>
+        {props.date} at {props.time}
+      </Text>
+      <ShowViewButton text="View">
+        <View style={styles.iconTextContainer}>
+          <FontAwesomeIcon style={styles.icon} size={40} icon={faUserMd} />
+          <Text style={styles.innerText}>Dr. Ellen</Text>
+        </View>
+        <View style={styles.iconTextContainer}>
+          <FontAwesomeIcon style={styles.icon} size={40} icon={faClock} />
+          <Text style={styles.innerText}>1 Hour</Text>
+        </View>
+        <View style={styles.iconTextContainer}>
+          <FontAwesomeIcon style={styles.icon} size={40} icon={faArchive} />
+          <Text style={styles.innerText}>Primary care</Text>
+        </View>
+        <View style={styles.iconTextContainer} />
+        <View style={styles.iconTextContainerWide}>
+          <FontAwesomeIcon
+            style={styles.icon}
+            size={40}
+            icon={faNotesMedical}
+          />
+          <Text style={styles.innerText}>Notes for visit</Text>
+        </View>
+      </ShowViewButton>
     </View>
   );
 }

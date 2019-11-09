@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
-import { withNavigation } from "react-navigation";
-
 import Colors from "../constants/Colors";
+
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: Colors.highlightColor,
@@ -23,15 +22,15 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4
   },
-  itemContainerSm: {
+  itemContainerWide: {
     backgroundColor: Colors.highlightColor,
-    height: 35,
-    width: 100,
+    height: 50,
     margin: 15,
-    marginLeft: 80,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
+    paddingLeft: 55,
+    paddingRight: 55,
     shadowColor: "black",
     shadowColor: "#000",
     shadowOffset: {
@@ -46,38 +45,29 @@ const styles = StyleSheet.create({
     fontSize: 35,
     color: "white",
     fontFamily: "fengardo-neue"
-  },
-  innerTextSm: {
-    fontSize: 25,
-    color: "white",
-    fontFamily: "fengardo-neue"
   }
 });
 // @TODO: Make touchable area fit the entire button
-class NavButton extends React.Component {
-  render() {
-    return (
+export default function ShowViewButton(props) {
+  const [viewState, setViewState] = useState(0);
+
+  function toggleState() {
+    setViewState(viewState === 0 ? 1 : 0);
+  }
+  return (
+    <React.Fragment>
       <View
         style={
-          this.props.size == "sm"
-            ? styles.itemContainerSm
-            : styles.itemContainer
+          props.size == "wide" ? styles.itemContainerWide : styles.itemContainer
         }
       >
-        <TouchableHighlight
-          onPress={() => this.props.navigation.navigate(this.props.navlocation)}
-          style={styles.button}
-        >
-          <Text
-            style={
-              this.props.size == "sm" ? styles.innerTextSm : styles.innerText
-            }
-          >
-            {this.props.text}
+        <TouchableHighlight onPress={toggleState} style={styles.button}>
+          <Text style={styles.innerText}>
+            {viewState === 0 ? props.text : "Hide"}
           </Text>
         </TouchableHighlight>
       </View>
-    );
-  }
+      {viewState === 0 ? null : props.children}
+    </React.Fragment>
+  );
 }
-export default withNavigation(NavButton);

@@ -3,7 +3,6 @@ import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faClipboardList, faCalendar } from "@fortawesome/free-solid-svg-icons";
-
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
@@ -37,8 +36,13 @@ const styles = StyleSheet.create({
     fontFamily: "fengardo-neue",
     textAlign: "center"
   },
-  innerTextEmphasize: {
-    fontSize: 40,
+  dateText: {
+    fontSize: 30,
+    fontFamily: "fengardo-neue",
+    textAlign: "center"
+  },
+  dateTextEmphasize: {
+    fontSize: 35,
     fontFamily: "fengardo-neue",
     textAlign: "center"
   },
@@ -58,9 +62,9 @@ export default function UpcomingVisit(props) {
         <Text style={styles.innerText}>Next Appointment:</Text>
       </View>
       <View style={styles.upcomingContainer}>
-        <Text style={styles.innerText}>{props.date.split(" ")[0]}</Text>
-        <Text style={styles.innerText}>{props.date.split(" ")[1]}</Text>
-        <Text style={styles.innerTextEmphasize}>{props.time}</Text>
+        <Text style={styles.dateText}>{props.date.split(" ")[0]}</Text>
+        <Text style={styles.dateText}>{props.date.split(" ")[1]}</Text>
+        <Text style={styles.dateTextEmphasize}>{props.time}</Text>
       </View>
     </View>
   );
