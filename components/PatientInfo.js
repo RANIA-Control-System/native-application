@@ -3,18 +3,17 @@ import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
-  faClipboardList,
-  faUserMd,
-  faClock,
-  faArchive,
-  faNotesMedical
+  faRing,
+  faBirthdayCake,
+  faPhone,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
-    width: 900,
     margin: 10,
+    padding: 25,
     flex: 1,
     flexWrap: "wrap",
     alignContent: "space-around",
@@ -39,15 +38,16 @@ const styles = StyleSheet.create({
   },
   bigText: {
     fontSize: 50,
+    marginBottom: 10,
     fontFamily: "fengardo-neue"
   },
   innerText: {
     fontSize: 35,
+    marginTop: 7,
     fontFamily: "fengardo-neue"
   },
   icon: {
     fontSize: 40,
-    marginLeft: 15,
     marginRight: 15,
     color: Colors.primaryColor
   }
@@ -65,21 +65,21 @@ export default function VisitLog(props) {
     <View style={styles.itemContainer}>
       <Text style={styles.bigText}>{name}</Text>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faBirthdayCake} />
         <Text style={styles.innerText}>
           {birthDate} [{age} years old]
         </Text>
       </View>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faPhone} />
         <Text style={styles.innerText}>{phoneNumber}</Text>
       </View>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faRing} />
         <Text style={styles.innerText}>{maritalStatus}</Text>
       </View>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faUser} />
         <Text style={styles.innerText}>{gender}</Text>
       </View>
     </View>

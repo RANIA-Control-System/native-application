@@ -3,6 +3,7 @@ import { ScrollView, Text, StyleSheet } from "react-native";
 
 import TopBar from "../components/TopBar";
 import PatientInfo from "../components/PatientInfo";
+import DocumentLoader from "../components/DocumentLoader";
 
 export default function PatientInfoScreen() {
   return (
@@ -10,6 +11,19 @@ export default function PatientInfoScreen() {
       <TopBar screen={"Patient Information"} />
       <ScrollView style={styles.container}>
         <PatientInfo />
+        <Text style={styles.pageText}>Medical Documents:</Text>
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
+        <DocumentLoader />
       </ScrollView>
     </React.Fragment>
   );
@@ -29,7 +43,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "young-serif",
     marginTop: 20,
-    marginBottom: 5,
+    marginBottom: 20,
     maxWidth: 600,
     alignSelf: "center"
   }

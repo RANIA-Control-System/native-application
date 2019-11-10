@@ -1,20 +1,21 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import NavButton from "./NavButton";
-
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { faFile } from "@fortawesome/free-solid-svg-icons";
+import ShowViewButton from "../components/ShowViewButton";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
-    height: 125,
     width: 600,
-    margin: 15,
+    margin: 10,
+    flex: 1,
+    flexWrap: "wrap",
+    alignContent: "space-around",
+    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    flexDirection: "row",
-    marginLeft: 105,
     borderWidth: 2,
     borderColor: Colors.primaryColor,
     borderRadius: 7,
@@ -29,10 +30,17 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   iconTextContainer: {
-    flexDirection: "row"
+    flexDirection: "row",
+    width: 200,
+    marginBottom: 10
+  },
+  iconTextContainerWide: {
+    flexDirection: "row",
+    width: 500,
+    marginBottom: 10
   },
   innerText: {
-    fontSize: 40,
+    fontSize: 35,
     marginTop: 7,
     fontFamily: "fengardo-neue"
   },
@@ -43,15 +51,17 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-
-export default function ModuleItem(props) {
+//@TODO: Implement data fetching for individual visit
+export default function DocumentLoader(props) {
   return (
     <View style={styles.itemContainer}>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
-        <Text style={styles.innerText}>{props.text}</Text>
+        <FontAwesomeIcon style={styles.icon} size={40} icon={faFile} />
+        <Text style={styles.innerText}>fileName.doc</Text>
       </View>
-      <NavButton text="View" size="md" navlocation={props.navlocation} />
+      <ShowViewButton text="Open">
+        <Text>TODO: Implement document support</Text>
+      </ShowViewButton>
     </View>
   );
 }

@@ -18,7 +18,12 @@ import {
   faCalendar,
   faClock,
   faNotesMedical,
-  faArchive
+  faArchive,
+  faRing,
+  faPhone,
+  faBirthdayCake,
+  faUser,
+  faFile
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -33,7 +38,12 @@ library.add(
   faCalendar,
   faClock,
   faNotesMedical,
-  faArchive
+  faArchive,
+  faRing,
+  faPhone,
+  faBirthdayCake,
+  faUser,
+  faFile
 );
 import AppNavigator from "./navigation/AppNavigator";
 
