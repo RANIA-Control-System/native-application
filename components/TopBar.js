@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, TouchableHighlight, Animated } from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Animated
+} from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Colors from "../constants/Colors";
@@ -47,7 +52,7 @@ export default function TopBar(props) {
   }
   return (
     <View style={styles.topBarContainer}>
-      <TouchableHighlight onPress={toggleHamburger}>
+      <TouchableWithoutFeedback onPress={toggleHamburger}>
         <Animated.View
           style={{
             transform: [{ rotate: transformDeg }]
@@ -55,7 +60,7 @@ export default function TopBar(props) {
         >
           <FontAwesomeIcon style={styles.icon} size={40} icon={faBars} />
         </Animated.View>
-      </TouchableHighlight>
+      </TouchableWithoutFeedback>
       <FeatureText style={styles.topBarText}>
         RANIA:
         {props.screen === undefined ? "" : `| ${props.screen}`}
