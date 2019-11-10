@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, TouchableHighlight } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, TouchableHighlight, Animated } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Colors from "../constants/Colors";
@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 4
   },
-  sidebarButton: {},
   icon: {
     marginLeft: 15,
     marginRight: 15,
@@ -34,18 +33,31 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-
+//@TODO Have hamburgeState change when swipe to open is used
 export default function TopBar(props) {
+  const [hamburgerState, setHamburgerState] = useState("closed");
+  const [transformDeg] = useState(new Animated.Value(0));
+  function toggleHamburger() {
+    props.navigation.toggleDrawer();
+    setHamburgerState(hamburgerState === "closed" ? "open" : "closed");
+    Animated.timing(transformDeg, {
+      toValue: hamburgerState === "closed" ? Math.PI / 2 : 0,
+      duration: 500
+    }).start();
+  }
   return (
     <View style={styles.topBarContainer}>
-      <TouchableHighlight
-        onPress={() => props.navigation.toggleDrawer()}
-        style={styles.sidebarButton}
-      >
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faBars} />
+      <TouchableHighlight onPress={toggleHamburger}>
+        <Animated.View
+          style={{
+            transform: [{ rotate: transformDeg }]
+          }}
+        >
+          <FontAwesomeIcon style={styles.icon} size={40} icon={faBars} />
+        </Animated.View>
       </TouchableHighlight>
       <FeatureText style={styles.topBarText}>
-        RANIA
+        RANIA:
         {props.screen === undefined ? "" : `| ${props.screen}`}
       </FeatureText>
     </View>
