@@ -1,14 +1,16 @@
-import React from "react";
-import { ScrollView, Text, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { ScrollView, Text, StyleSheet, Dimensions } from "react-native";
 
 import TopBar from "../components/TopBar";
 import PatientInfo from "../components/PatientInfo";
 import DocumentLoader from "../components/DocumentLoader";
 
-export default function PatientInfoScreen() {
+export default function PatientInfoScreen(props) {
+  if (Dimensions.get("window").width > Dimensions.get("window").height)
+    useEffect(() => props.navigation.openDrawer(), []);
   return (
     <React.Fragment>
-      <TopBar screen={"Patient Information"} />
+      <TopBar screen={"Patient Information"} navigation={props.navigation} />
       <ScrollView style={styles.container}>
         <PatientInfo />
         <Text style={styles.pageText}>Medical Documents:</Text>

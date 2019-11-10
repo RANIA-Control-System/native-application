@@ -1,15 +1,17 @@
-import React from "react";
-import { ScrollView, Text, StyleSheet } from "react-native";
+import React, { useEffect } from "react";
+import { ScrollView, Text, StyleSheet, Dimensions } from "react-native";
 
 import TopBar from "../components/TopBar";
 import VisitLog from "../components/VisitLog";
 import UpcomingVisit from "../components/UpcomingVisit";
 import ShowViewButton from "../components/ShowViewButton";
 
-export default function RemoteVisitScreen() {
+export default function RemoteVisitScreen(props) {
+  if (Dimensions.get("window").width > Dimensions.get("window").height)
+    useEffect(() => props.navigation.openDrawer(), []);
   return (
     <React.Fragment>
-      <TopBar screen={"Remote Visit"} />
+      <TopBar screen={"Remote Visit"} navigation={props.navigation} />
       <ScrollView style={styles.container}>
         <ShowViewButton text="Request Visit" size="wide">
           <Text style={styles.pageText}>

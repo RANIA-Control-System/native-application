@@ -1,5 +1,5 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Text, View, StyleSheet, Animated } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
@@ -53,8 +53,17 @@ const styles = StyleSheet.create({
 });
 //@TODO: Implement data fetching for individual visit
 export default function DocumentLoader(props) {
+  const [fadeAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
+
+  React.useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500
+    }).start();
+  }, []);
+
   return (
-    <View style={styles.itemContainer}>
+    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
       <View style={styles.iconTextContainer}>
         <FontAwesomeIcon style={styles.icon} size={40} icon={faFile} />
         <Text style={styles.innerText}>fileName.doc</Text>
@@ -62,7 +71,6 @@ export default function DocumentLoader(props) {
       <ShowViewButton text="Open">
         <Text>TODO: Implement document support</Text>
       </ShowViewButton>
-    </View>
+    </Animated.View>
   );
 }
-//

@@ -23,7 +23,8 @@ import {
   faPhone,
   faBirthdayCake,
   faUser,
-  faFile
+  faFile,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -43,7 +44,8 @@ library.add(
   faPhone,
   faBirthdayCake,
   faUser,
-  faFile
+  faFile,
+  faBars
 );
 import AppNavigator from "./navigation/AppNavigator";
 
