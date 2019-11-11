@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Animated } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faFile } from "@fortawesome/free-solid-svg-icons";
-import ShowViewButton from "../components/ShowViewButton";
+import ShowViewButton from "./ShowViewButton";
 
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
     width: 600,
+    height: 75,
     margin: 10,
     flex: 1,
     flexWrap: "wrap",
@@ -31,12 +31,6 @@ const styles = StyleSheet.create({
   },
   iconTextContainer: {
     flexDirection: "row",
-    width: 200,
-    marginBottom: 10
-  },
-  iconTextContainerWide: {
-    flexDirection: "row",
-    width: 500,
     marginBottom: 10
   },
   innerText: {
@@ -45,7 +39,6 @@ const styles = StyleSheet.create({
     fontFamily: "fengardo-neue"
   },
   icon: {
-    fontSize: 40,
     marginLeft: 15,
     marginRight: 15,
     color: Colors.primaryColor
@@ -53,24 +46,12 @@ const styles = StyleSheet.create({
 });
 //@TODO: Implement data fetching for individual document
 export default function DocumentLoader(props) {
-  const [fadeAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
-
-  React.useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 500
-    }).start();
-  }, []);
-
   return (
-    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+    <View style={styles.itemContainer}>
       <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faFile} />
-        <Text style={styles.innerText}>fileName.doc</Text>
+        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
+        <Text style={styles.innerText}>{props.children}</Text>
       </View>
-      <ShowViewButton text="Open">
-        <Text>TODO: Implement document support</Text>
-      </ShowViewButton>
-    </Animated.View>
+    </View>
   );
 }

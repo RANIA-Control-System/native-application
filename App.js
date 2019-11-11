@@ -24,7 +24,9 @@ import {
   faBirthdayCake,
   faUser,
   faFile,
-  faBars
+  faBars,
+  faHome,
+  faLink
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -45,7 +47,9 @@ library.add(
   faBirthdayCake,
   faUser,
   faFile,
-  faBars
+  faBars,
+  faHome,
+  faLink
 );
 import AppNavigator from "./navigation/AppNavigator";
 

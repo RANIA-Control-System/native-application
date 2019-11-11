@@ -6,8 +6,8 @@ import PatientInfo from "../components/PatientInfo";
 import DocumentLoader from "../components/DocumentLoader";
 
 export default function PatientInfoScreen(props) {
-  if (Dimensions.get("window").width > Dimensions.get("window").height)
-    useEffect(() => props.navigation.openDrawer(), []);
+  // if (Dimensions.get("window").width > Dimensions.get("window").height)
+  //   useEffect(() => props.navigation.openDrawer(), []);
   return (
     <React.Fragment>
       <TopBar screen={"Patient Information"} navigation={props.navigation} />

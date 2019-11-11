@@ -62,7 +62,7 @@ export default function TopBar(props) {
         </Animated.View>
       </TouchableWithoutFeedback>
       <FeatureText style={styles.topBarText}>
-        RANIA:
+        RANIA
         {props.screen === undefined ? "" : `| ${props.screen}`}
       </FeatureText>
     </View>
