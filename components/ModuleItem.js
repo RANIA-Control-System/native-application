@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import PrimaryButton from "../components/PrimaryButton";
+import NavButton from "./NavButton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
@@ -11,10 +11,11 @@ const styles = StyleSheet.create({
     height: 125,
     width: 600,
     margin: 15,
+    flexWrap: "wrap",
+    alignContent: "space-around",
+    flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    flexDirection: "row",
-    marginLeft: 105,
     borderWidth: 2,
     borderColor: Colors.primaryColor,
     borderRadius: 7,
@@ -33,6 +34,7 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 40,
+    marginTop: 7,
     fontFamily: "fengardo-neue"
   },
   icon: {
@@ -50,7 +52,7 @@ export default function ModuleItem(props) {
         <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
         <Text style={styles.innerText}>{props.text}</Text>
       </View>
-      <PrimaryButton text="View" size="md" />
+      <NavButton text="View" size="md" navlocation={props.navlocation} />
     </View>
   );
 }

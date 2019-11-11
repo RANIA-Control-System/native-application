@@ -1,23 +1,34 @@
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import ModuleItem from "../components/ModuleItem";
 import { FeatureText } from "../components/StyledText";
 
 export default function HomeScreen(props) {
-  useEffect(() => props.navigation.openDrawer(), []);
+  // if (Dimensions.get("window").width > Dimensions.get("window").height)
+  //   useEffect(() => props.navigation.openDrawer(), []);
+
   return (
     <React.Fragment>
-      <TopBar />
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        <ModuleItem text="Remote Visit" icon="user-md" />
-        <ModuleItem text="Fall Detection" icon="hiking" />
-        <ModuleItem text="Natural Language" icon="deaf" />
-        <ModuleItem text="Module Name" icon="question-circle" />
+      <TopBar screen="Home" navigation={props.navigation} />
+      <ScrollView style={styles.container}>
+        <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
+        <ModuleItem
+          text="Fall Detection"
+          icon="hiking"
+          navlocation="RemoteVist"
+        />
+        <ModuleItem
+          text="Natural Language"
+          icon="deaf"
+          navlocation="RemoteVist"
+        />
+        <ModuleItem
+          text="Module Name"
+          icon="question-circle"
+          navlocation="RemoteVist"
+        />
         <DevelopmentModeNotice />
       </ScrollView>
     </React.Fragment>
@@ -57,17 +68,11 @@ function handleLearnMorePress() {
   );
 }
 
-function handleHelpPress() {
-  WebBrowser.openBrowserAsync(
-    "https://docs.expo.io/versions/latest/workflow/up-and-running/#cant-see-your-changes"
-  );
-}
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     FlexDirecton: "column",
-    justifyContent: "center"
+    alignItems: "center"
   },
   developmentModeText: {
     marginBottom: 20,
