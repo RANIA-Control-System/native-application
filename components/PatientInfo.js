@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
+import ApiUrl from "../constants/dataFetching";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faRing,
@@ -8,6 +9,7 @@ import {
   faPhone,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+import apiUrl from "../constants/dataFetching";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -52,15 +54,40 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
+
 //@TODO: Implement data fetching for individual patient
 export default function PatientInfo(props) {
-  const [name, setname] = useState("John M. Cale");
+  const [name, setName] = useState("John M. Cale");
   const [birthDate, setBirthdate] = useState("November 18th, 1929");
   const [age, setAge] = useState("90");
   const [phoneNumber, setPhoneNumber] = useState("(804)-123-2305");
   const [gender, setGender] = useState("Male");
   const [maritalStatus, setMaritalStatus] = useState("Married");
-
+  const [loadingStatus, setLoadingStatus] = useState(true);
+  useEffect(() => {
+    async function fetchPatientInfo() {
+      return fetch(apiUrl + "patients/5dd2aeb11c9d4400000b856e")
+        .then(response => response.json())
+        .then(responseJson => {
+          setName(
+            responseJson.name.firstName +
+              " " +
+              responseJson.name.middleInitial +
+              ". " +
+              responseJson.name.lastName
+          );
+          setBirthdate(responseJson.birthDate);
+          setAge(calculateAge(responseJson.birthDate));
+          setPhoneNumber(responseJson.phoneNumber);
+          setGender(responseJson.gender);
+          setMaritalStatus(responseJson.maritalStatus);
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+    fetchPatientInfo();
+  }, [name, birthDate, age, phoneNumber, gender, maritalStatus]);
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.bigText}>{name}</Text>
@@ -85,4 +112,10 @@ export default function PatientInfo(props) {
     </View>
   );
 }
-//
+function calculateAge(birthdayString) {
+  let splitDate = birthdayString.split("/");
+  let birthdayDate = new Date(splitDate[2], splitDate[1] - 1, splitDate[0]);
+  let currentDate = new Date();
+  let age = Math.floor((currentDate - birthdayDate) / 31557600000);
+  return age;
+}
