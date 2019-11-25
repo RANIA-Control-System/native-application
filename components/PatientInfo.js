@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  Animated
+} from "react-native";
 import Colors from "../constants/Colors";
 import ApiUrl from "../constants/dataFetching";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
 });
 
 //@TODO: Implement data fetching for individual patient
-export default function PatientInfo(props) {
+export default function PatientInfo() {
   const [name, setName] = useState("John M. Cale");
   const [birthDate, setBirthdate] = useState("November 18th, 1929");
   const [age, setAge] = useState("90");
@@ -64,7 +70,13 @@ export default function PatientInfo(props) {
   const [gender, setGender] = useState("Male");
   const [maritalStatus, setMaritalStatus] = useState("Married");
   const [loadingStatus, setLoadingStatus] = useState(true);
+  const [fadeAnim] = useState(new Animated.Value(0));
+
   useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500
+    }).start();
     async function fetchPatientInfo() {
       return fetch(apiUrl + "patients/5dd2aeb11c9d4400000b856e")
         .then(response => response.json())
@@ -81,6 +93,7 @@ export default function PatientInfo(props) {
           setPhoneNumber(responseJson.phoneNumber);
           setGender(responseJson.gender);
           setMaritalStatus(responseJson.maritalStatus);
+          setLoadingStatus(false);
         })
         .catch(error => {
           console.error(error);
@@ -89,27 +102,37 @@ export default function PatientInfo(props) {
     fetchPatientInfo();
   }, [name, birthDate, age, phoneNumber, gender, maritalStatus]);
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.bigText}>{name}</Text>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faBirthdayCake} />
-        <Text style={styles.innerText}>
-          {birthDate} [{age} years old]
-        </Text>
-      </View>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faPhone} />
-        <Text style={styles.innerText}>{phoneNumber}</Text>
-      </View>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faRing} />
-        <Text style={styles.innerText}>{maritalStatus}</Text>
-      </View>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faUser} />
-        <Text style={styles.innerText}>{gender}</Text>
-      </View>
-    </View>
+    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+      {loadingStatus ? (
+        <ActivityIndicator size="large" color={Colors.primaryColor} />
+      ) : (
+        <React.Fragment>
+          <Text style={styles.bigText}>{name}</Text>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon
+              style={styles.icon}
+              size={40}
+              icon={faBirthdayCake}
+            />
+            <Text style={styles.innerText}>
+              {birthDate} [{age} years old]
+            </Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={faPhone} />
+            <Text style={styles.innerText}>{phoneNumber}</Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={faRing} />
+            <Text style={styles.innerText}>{maritalStatus}</Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={faUser} />
+            <Text style={styles.innerText}>{gender}</Text>
+          </View>
+        </React.Fragment>
+      )}
+    </Animated.View>
   );
 }
 function calculateAge(birthdayString) {

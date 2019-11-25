@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
 export default function DocumentLoader(props) {
   const [fadeAnim] = useState(new Animated.Value(0)); // Initial value for opacity: 0
 
-  React.useEffect(() => {
+  useEffect(() => {
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 500
