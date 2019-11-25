@@ -134,10 +134,10 @@ SettingsStack.path = "";
 
 const tabNavigator = createDrawerNavigator(
   {
+    RemoteStack,
     HouseInfoStack,
     PatientInfoStack,
     HomeStack,
-    RemoteStack,
     LinksStack,
     SettingsStack
   },

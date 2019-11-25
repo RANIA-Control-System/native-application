@@ -61,7 +61,6 @@ const styles = StyleSheet.create({
   }
 });
 
-//@TODO: Implement data fetching for individual patient
 export default function PatientInfo() {
   const [name, setName] = useState("John M. Cale");
   const [birthDate, setBirthdate] = useState("November 18th, 1929");
@@ -101,6 +100,7 @@ export default function PatientInfo() {
     }
     fetchPatientInfo();
   }, [name, birthDate, age, phoneNumber, gender, maritalStatus]);
+
   return (
     <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
       {loadingStatus ? (
