@@ -54,7 +54,16 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function UpcomingVisit(props) {
+export default function UpcomingVisit(visit) {
+  var d = new Date(visit.visit.date);
+  let weekday = new Array(7);
+  weekday[0] = "Sunday";
+  weekday[1] = "Monday";
+  weekday[2] = "Tuesday";
+  weekday[3] = "Wednesday";
+  weekday[4] = "Thursday";
+  weekday[5] = "Friday";
+  weekday[6] = "Saturday";
   return (
     <View style={styles.itemContainer}>
       <View style={styles.iconTextContainer}>
@@ -62,9 +71,9 @@ export default function UpcomingVisit(props) {
         <Text style={styles.innerText}>Next Appointment:</Text>
       </View>
       <View style={styles.upcomingContainer}>
-        <Text style={styles.dateText}>{props.date.split(" ")[0]}</Text>
-        <Text style={styles.dateText}>{props.date.split(" ")[1]}</Text>
-        <Text style={styles.dateTextEmphasize}>{props.time}</Text>
+        <Text style={styles.dateText}>{weekday[d.getDay()]}</Text>
+        <Text style={styles.dateText}>{d.toLocaleDateString()}</Text>
+        <Text style={styles.dateTextEmphasize}>{visit.visit.startTime}</Text>
       </View>
     </View>
   );

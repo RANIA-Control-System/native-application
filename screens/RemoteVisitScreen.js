@@ -43,7 +43,7 @@ export default function RemoteVisitScreen(props) {
       <ScrollView style={styles.container}>
         <ShowViewButton text="Request Visit" size="wide">
           <Text style={styles.pageText}>
-            {JSON.stringify(loggedVisits[0])}To request a visit, open up the
+            {JSON.stringify(upcomingVisit)} To request a visit, open up the
             remote visit app MORE INFO HERE
           </Text>
         </ShowViewButton>
@@ -52,7 +52,7 @@ export default function RemoteVisitScreen(props) {
             To attend visit, open up the remote visit app MORE INFO HERE
           </Text>
         </ShowViewButton>
-        <UpcomingVisit date={"Thursday 10/11/19"} time={"2pm"} />
+        <UpcomingVisit visit={upcomingVisit} />
         <Text style={styles.pageText}>Visit History:</Text>
         {VisitLogs}
       </ScrollView>

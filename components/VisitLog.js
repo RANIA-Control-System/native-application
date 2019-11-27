@@ -58,12 +58,19 @@ const styles = StyleSheet.create({
 });
 
 export default function VisitLog(visit) {
+  let d = new Date(visit.visit.date);
+  let correctedTime = visit.visit.startTime;
+  if (correctedTime.length < 11)
+    correctedTime =
+      correctedTime.substring(0, 4) + " " + correctedTime.substring(8, 10);
+  else
+    correctedTime =
+      correctedTime.substring(0, 5) + " " + correctedTime.substring(9, 11);
   return (
     <View style={styles.itemContainer}>
       <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
       <Text style={styles.innerText}>
-        {visit.visit.date.substring(0, 10)} at{" "}
-        {visit.visit.startTime.substring(0, 8).trim()}
+        {d.toLocaleDateString()} at {correctedTime}
       </Text>
       <ShowViewButton text="View">
         <View style={styles.iconTextContainer}>
