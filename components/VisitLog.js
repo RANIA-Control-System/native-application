@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 });
 
 export default function VisitLog(visit) {
-  let d = new Date(visit.visit.date);
+  let fetchedDateAsDate = new Date(visit.visit.date);
   let correctedTime = visit.visit.startTime;
   if (correctedTime.length < 11)
     correctedTime =
@@ -70,7 +70,7 @@ export default function VisitLog(visit) {
     <View style={styles.itemContainer}>
       <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
       <Text style={styles.innerText}>
-        {d.toLocaleDateString()} at {correctedTime}
+        {fetchedDateAsDate.toLocaleDateString()} at {correctedTime}
       </Text>
       <ShowViewButton text="View">
         <View style={styles.iconTextContainer}>
