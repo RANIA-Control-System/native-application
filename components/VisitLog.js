@@ -56,26 +56,27 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-//@TODO: Implement data fetching for individual visit
-export default function VisitLog(props) {
+
+export default function VisitLog(visit) {
   return (
     <View style={styles.itemContainer}>
       <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
       <Text style={styles.innerText}>
-        {props.date} at {props.time}
+        {visit.visit.date.substring(0, 10)} at{" "}
+        {visit.visit.startTime.substring(0, 8).trim()}
       </Text>
       <ShowViewButton text="View">
         <View style={styles.iconTextContainer}>
           <FontAwesomeIcon style={styles.icon} size={40} icon={faUserMd} />
-          <Text style={styles.innerText}>Dr. Ellen</Text>
+          <Text style={styles.innerText}>{visit.visit.doctor}</Text>
         </View>
         <View style={styles.iconTextContainer}>
           <FontAwesomeIcon style={styles.icon} size={40} icon={faClock} />
-          <Text style={styles.innerText}>1 Hour</Text>
+          <Text style={styles.innerText}>{visit.visit.length}</Text>
         </View>
         <View style={styles.iconTextContainer}>
           <FontAwesomeIcon style={styles.icon} size={40} icon={faArchive} />
-          <Text style={styles.innerText}>Primary care</Text>
+          <Text style={styles.innerText}>{visit.visit.type}</Text>
         </View>
         <View style={styles.iconTextContainer} />
         <View style={styles.iconTextContainerWide}>
@@ -84,7 +85,7 @@ export default function VisitLog(props) {
             size={40}
             icon={faNotesMedical}
           />
-          <Text style={styles.innerText}>Notes for visit</Text>
+          <Text style={styles.innerText}>{visit.visit.notes}</Text>
         </View>
       </ShowViewButton>
     </View>

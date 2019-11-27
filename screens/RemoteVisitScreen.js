@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ScrollView, Text, StyleSheet, Animated } from "react-native";
+import { ScrollView, Text, StyleSheet } from "react-native";
 
 import TopBar from "../components/TopBar";
 import VisitLog from "../components/VisitLog";
@@ -11,21 +11,18 @@ export default function RemoteVisitScreen(props) {
   const [loggedVisits, setLoggedVisits] = useState([]);
   const [upcomingVisit, setUpcomingVisit] = useState({});
   const [loadingStatus, setLoadingStatus] = useState(true);
-  const [fadeAnim] = useState(new Animated.Value(0));
+
   useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 500
-    }).start();
     async function fetchVisits() {
-      return fetch(apiUrl + "/???")
+      return fetch(apiUrl + "remoteVisits/5dc5a9991c9d4400004c1254")
         .then(response => response.json())
         .then(responseJson => {
           let fetchedLoggedVisits = [];
           let closestUpcoming = {};
-          responseJson.visits.forEach(visit => {
+
+          responseJson.forEach(visit => {
             /** if (visit is in the past) **/
-            visits.push(visit);
+            fetchedLoggedVisits.push(visit);
             /** else if (visit is close to the ) */
             closestUpcoming = visit;
           });
@@ -37,7 +34,7 @@ export default function RemoteVisitScreen(props) {
         });
     }
     fetchVisits();
-  }, [loggedVisits, upcomingVisit]);
+  }, []);
 
   const VisitLogs = loggedVisits.map(visit => <VisitLog visit={visit} />);
   return (
@@ -46,7 +43,8 @@ export default function RemoteVisitScreen(props) {
       <ScrollView style={styles.container}>
         <ShowViewButton text="Request Visit" size="wide">
           <Text style={styles.pageText}>
-            To request a visit, open up the remote visit app MORE INFO HERE
+            {JSON.stringify(loggedVisits[0])}To request a visit, open up the
+            remote visit app MORE INFO HERE
           </Text>
         </ShowViewButton>
         <ShowViewButton text="Attend Visit" size="wide">

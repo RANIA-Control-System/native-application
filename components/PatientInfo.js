@@ -76,6 +76,7 @@ export default function PatientInfo() {
       toValue: 1,
       duration: 500
     }).start();
+
     async function fetchPatientInfo() {
       return fetch(apiUrl + "patients/5dd2aeb11c9d4400000b856e")
         .then(response => response.json())
