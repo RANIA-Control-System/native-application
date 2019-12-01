@@ -7,7 +7,7 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
-import ApiUrl from "../constants/dataFetching";
+import apiUrl from "../constants/dataFetching";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faRing,
@@ -15,12 +15,11 @@ import {
   faPhone,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
-import apiUrl from "../constants/dataFetching";
-
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
     margin: 10,
+    maxWidth: 700,
     padding: 25,
     flex: 1,
     flexWrap: "wrap",
@@ -67,8 +66,8 @@ export default function PatientInfo() {
   const [age, setAge] = useState("90");
   const [phoneNumber, setPhoneNumber] = useState("(804)-123-2305");
   const [gender, setGender] = useState("Male");
-  const [maritalStatus, setMaritalStatus] = useState("Married");
-  const [loadingStatus, setLoadingStatus] = useState(true);
+  const [maritalStatus, setMaritalStatus] = useState("");
+  const [fetchingState, setFetchingState] = useState("fetching");
   const [fadeAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -93,10 +92,10 @@ export default function PatientInfo() {
           setPhoneNumber(responseJson.phoneNumber);
           setGender(responseJson.gender);
           setMaritalStatus(responseJson.maritalStatus);
-          setLoadingStatus(false);
+          setFetchingState("fetched");
         })
         .catch(error => {
-          console.error(error);
+          setFetchingState("offline");
         });
     }
     fetchPatientInfo();
@@ -104,8 +103,13 @@ export default function PatientInfo() {
 
   return (
     <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
-      {loadingStatus ? (
+      {fetchingState === "fetching" ? (
         <ActivityIndicator size="large" color={Colors.primaryColor} />
+      ) : fetchingState === "offline" ? (
+        <Text style={styles.innerText}>
+          You are offline. Please connect to the internet or contact a caretaker
+          for assistance.
+        </Text>
       ) : (
         <React.Fragment>
           <Text style={styles.bigText}>{name}</Text>

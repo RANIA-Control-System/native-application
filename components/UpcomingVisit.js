@@ -1,8 +1,14 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  Animated
+} from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faClipboardList, faCalendar } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
@@ -55,7 +61,8 @@ const styles = StyleSheet.create({
 });
 
 export default function UpcomingVisit(visit) {
-  let fetchedDateAsDate = new Date(visit.visit.date);
+  const [fadeAnim] = useState(new Animated.Value(0));
+  let fetchedDateAsDate;
   let weekdays = [
     "Sunday",
     "Monday",
@@ -65,23 +72,47 @@ export default function UpcomingVisit(visit) {
     "Friday",
     "Saturday"
   ];
+  if (visit.visit !== undefined && visit.visit !== null) {
+    fetchedDateAsDate = new Date(visit.visit.date);
+  }
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500
+    }).start();
+  }, []);
 
   return (
-    <View style={styles.itemContainer}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faCalendar} />
-        <Text style={styles.innerText}>Next Appointment:</Text>
-      </View>
-      <View style={styles.upcomingContainer}>
-        <Text style={styles.dateText}>
-          {weekdays[fetchedDateAsDate.getDay()]}
-        </Text>
-        <Text style={styles.dateText}>
-          {fetchedDateAsDate.toLocaleDateString()}
-        </Text>
-        <Text style={styles.dateTextEmphasize}>{visit.visit.startTime}</Text>
-      </View>
-    </View>
+    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+      {visit.visit === undefined ? (
+        <ActivityIndicator size="large" color={Colors.primaryColor} />
+      ) : (
+        <React.Fragment>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={faCalendar} />
+            <Text style={styles.innerText}>Next Appointment:</Text>
+          </View>
+          {visit.visit === null ? (
+            <View style={styles.upcomingContainer}>
+              <Text style={styles.dateText}>No</Text>
+              <Text style={styles.dateText}>appointment</Text>
+              <Text style={styles.dateText}>scheduled</Text>
+            </View>
+          ) : (
+            <View style={styles.upcomingContainer}>
+              <Text style={styles.dateText}>
+                {weekdays[fetchedDateAsDate.getDay()]}
+              </Text>
+              <Text style={styles.dateText}>
+                {fetchedDateAsDate.toLocaleDateString()}
+              </Text>
+              <Text style={styles.dateTextEmphasize}>
+                {visit.visit.startTime}
+              </Text>
+            </View>
+          )}
+        </React.Fragment>
+      )}
+    </Animated.View>
   );
 }
-//

@@ -3,7 +3,20 @@ import React, { useEffect } from "react";
 import { ScrollView, StyleSheet, Text, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import ModuleItem from "../components/ModuleItem";
-import { FeatureText } from "../components/StyledText";
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    FlexDirecton: "column",
+    alignItems: "center"
+  },
+  developmentModeText: {
+    marginBottom: 20,
+    color: "rgba(0,0,0,0.4)",
+    fontSize: 14,
+    lineHeight: 19,
+    textAlign: "center"
+  }
+});
 
 export default function HomeScreen(props) {
   // if (Dimensions.get("window").width > Dimensions.get("window").height)
@@ -11,7 +24,11 @@ export default function HomeScreen(props) {
 
   return (
     <React.Fragment>
-      <TopBar screen="Home" navigation={props.navigation} />
+      <TopBar
+        screen="Home"
+        navigation={props.navigation}
+        wasDrawerOpen={props.navigation.state.isDrawerOpen}
+      />
       <ScrollView style={styles.container}>
         <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
         <ModuleItem
@@ -67,18 +84,3 @@ function handleLearnMorePress() {
     "https://docs.expo.io/versions/latest/workflow/development-mode/"
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    FlexDirecton: "column",
-    alignItems: "center"
-  },
-  developmentModeText: {
-    marginBottom: 20,
-    color: "rgba(0,0,0,0.4)",
-    fontSize: 14,
-    lineHeight: 19,
-    textAlign: "center"
-  }
-});

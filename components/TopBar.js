@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   StyleSheet,
+  Text,
   TouchableWithoutFeedback,
   Animated
 } from "react-native";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Colors from "../constants/Colors";
-import { FeatureText } from "../components/StyledText";
-
 const styles = StyleSheet.create({
   topBarContainer: {
     backgroundColor: Colors.secondaryColor,
@@ -35,6 +34,7 @@ const styles = StyleSheet.create({
   },
   topBarText: {
     fontSize: 42,
+    fontFamily: "young-serif",
     color: Colors.primaryColor
   }
 });
@@ -50,6 +50,12 @@ export default function TopBar(props) {
       duration: 500
     }).start();
   }
+  useEffect(() => {
+    const isDrawerOpen = props.navigation.state.isDrawerOpen;
+    if (props.wasDrawerOpen !== isDrawerOpen) {
+      toggleHamburger();
+    }
+  });
   return (
     <View style={styles.topBarContainer}>
       <TouchableWithoutFeedback onPress={toggleHamburger}>
@@ -61,10 +67,10 @@ export default function TopBar(props) {
           <FontAwesomeIcon style={styles.icon} size={40} icon={faBars} />
         </Animated.View>
       </TouchableWithoutFeedback>
-      <FeatureText style={styles.topBarText}>
+      <Text style={styles.topBarText}>
         RANIA
         {props.screen === undefined ? "" : `| ${props.screen}`}
-      </FeatureText>
+      </Text>
     </View>
   );
 }

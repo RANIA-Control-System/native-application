@@ -5,13 +5,32 @@ import TopBar from "../components/TopBar";
 import HouseInfo from "../components/HouseInfo";
 import EmergencyContact from "../components/EmergencyContact";
 import RaniaConnection from "../components/RaniaConnection";
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    backgroundColor: "#fff"
+  },
+  pageText: {
+    fontSize: 30,
+    fontFamily: "young-serif",
+    marginTop: 20,
+    marginBottom: 20,
+    maxWidth: 600,
+    alignSelf: "center"
+  }
+});
 
 export default function HouseInfoScreen(props) {
   //   if (Dimensions.get("window").width > Dimensions.get("window").height)
   //     useEffect(() => props.navigation.openDrawer(), []);
   return (
     <React.Fragment>
-      <TopBar screen={"House Information"} navigation={props.navigation} />
+      <TopBar
+        screen={"House Information"}
+        navigation={props.navigation}
+        wasDrawerOpen={props.navigation.state.isDrawerOpen}
+      />
       <ScrollView style={styles.container}>
         <HouseInfo />
         <Text style={styles.pageText}>Emergency Contacts:</Text>
@@ -32,19 +51,3 @@ HouseInfoScreen.navigationOptions = {
   title: "House Info",
   header: null
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    backgroundColor: "#fff"
-  },
-  pageText: {
-    fontSize: 30,
-    fontFamily: "young-serif",
-    marginTop: 20,
-    marginBottom: 20,
-    maxWidth: 600,
-    alignSelf: "center"
-  }
-});

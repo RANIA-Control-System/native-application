@@ -1,5 +1,11 @@
-import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  Animated
+} from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -16,6 +22,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: 600,
     margin: 10,
+    padding: 20,
     flex: 1,
     flexWrap: "wrap",
     alignContent: "space-around",
@@ -58,44 +65,66 @@ const styles = StyleSheet.create({
 });
 
 export default function VisitLog(visit) {
-  let fetchedDateAsDate = new Date(visit.visit.date);
-  let correctedTime = visit.visit.startTime;
-  if (correctedTime.length < 11)
-    correctedTime =
-      correctedTime.substring(0, 4) + " " + correctedTime.substring(8, 10);
-  else
-    correctedTime =
-      correctedTime.substring(0, 5) + " " + correctedTime.substring(9, 11);
+  const [fadeAnim] = useState(new Animated.Value(0));
+  let fetchedDateAsDate;
+  let correctedTime;
+  if (visit.visit !== undefined) {
+    fetchedDateAsDate = new Date(visit.visit.date);
+    correctedTime = visit.visit.startTime;
+    if (correctedTime.length < 11)
+      correctedTime =
+        correctedTime.substring(0, 4) + " " + correctedTime.substring(8, 10);
+    else
+      correctedTime =
+        correctedTime.substring(0, 5) + " " + correctedTime.substring(9, 11);
+  }
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500
+    }).start();
+  }, []);
+
   return (
-    <View style={styles.itemContainer}>
-      <FontAwesomeIcon style={styles.icon} size={40} icon={faClipboardList} />
-      <Text style={styles.innerText}>
-        {fetchedDateAsDate.toLocaleDateString()} at {correctedTime}
-      </Text>
-      <ShowViewButton text="View">
-        <View style={styles.iconTextContainer}>
-          <FontAwesomeIcon style={styles.icon} size={40} icon={faUserMd} />
-          <Text style={styles.innerText}>{visit.visit.doctor}</Text>
-        </View>
-        <View style={styles.iconTextContainer}>
-          <FontAwesomeIcon style={styles.icon} size={40} icon={faClock} />
-          <Text style={styles.innerText}>{visit.visit.length}</Text>
-        </View>
-        <View style={styles.iconTextContainer}>
-          <FontAwesomeIcon style={styles.icon} size={40} icon={faArchive} />
-          <Text style={styles.innerText}>{visit.visit.type}</Text>
-        </View>
-        <View style={styles.iconTextContainer} />
-        <View style={styles.iconTextContainerWide}>
+    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+      {visit.visit === undefined ? (
+        <ActivityIndicator size="large" color={Colors.primaryColor} />
+      ) : (
+        <React.Fragment>
           <FontAwesomeIcon
             style={styles.icon}
             size={40}
-            icon={faNotesMedical}
+            icon={faClipboardList}
           />
-          <Text style={styles.innerText}>{visit.visit.notes}</Text>
-        </View>
-      </ShowViewButton>
-    </View>
+          <Text style={styles.innerText}>
+            {fetchedDateAsDate.toLocaleDateString()} at {correctedTime}
+          </Text>
+          <ShowViewButton text="View">
+            <View style={styles.iconTextContainer}>
+              <FontAwesomeIcon style={styles.icon} size={40} icon={faUserMd} />
+              <Text style={styles.innerText}>{visit.visit.doctor}</Text>
+            </View>
+            <View style={styles.iconTextContainer}>
+              <FontAwesomeIcon style={styles.icon} size={40} icon={faClock} />
+              <Text style={styles.innerText}>{visit.visit.length}</Text>
+            </View>
+            <View style={styles.iconTextContainer}>
+              <FontAwesomeIcon style={styles.icon} size={40} icon={faArchive} />
+              <Text style={styles.innerText}>{visit.visit.type}</Text>
+            </View>
+            <View style={styles.iconTextContainer} />
+            <View style={styles.iconTextContainerWide}>
+              <FontAwesomeIcon
+                style={styles.icon}
+                size={40}
+                icon={faNotesMedical}
+              />
+              <Text style={styles.innerText}>{visit.visit.notes}</Text>
+            </View>
+          </ShowViewButton>
+        </React.Fragment>
+      )}
+    </Animated.View>
   );
 }
 //
