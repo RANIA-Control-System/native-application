@@ -7,18 +7,19 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "flex-start",
     backgroundColor: "#fff"
   },
   pageText: {
     fontSize: 30,
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: -50,
     maxWidth: 600,
     alignSelf: "center"
   }
 });
 export default function SettingsScreen(props) {
-  const [font, setFont] = useState("");
+  const [font, setFont] = useState();
   return (
     <GlobalContext.Consumer>
       {value => (
@@ -26,13 +27,17 @@ export default function SettingsScreen(props) {
           <TopBar screen="Home" navigation={props.navigation} />
           <View style={styles.container}>
             <Text style={{ ...styles.pageText, fontFamily: value.mainFont }}>
-              Font settings: {font}
+              Font settings:
             </Text>
             <Picker
               selectedValue={font}
-              style={{ height: 50, width: 300 }}
+              style={{ width: 300 }}
               onValueChange={itemValue => {
-                setFont(itemValue);
+                setFont(value.mainFont);
+                if (value.mainFont !== itemValue) {
+                  this.changeFont();
+                  setFont(itemValue);
+                }
               }}
             >
               <Picker.Item label="Classic" value="fengardo-neue" />

@@ -55,7 +55,10 @@ import AppNavigator from "./navigation/AppNavigator";
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-  const [font, setFont] = useState(fonts.dyslexic);
+  const [font, setFont] = useState(fonts.main);
+  changeFont = () => {
+    setFont(font === fonts.main ? fonts.dyslexic : fonts.main);
+  };
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading
@@ -66,7 +69,7 @@ export default function App(props) {
     );
   } else {
     return (
-      <GlobalContext.Provider value={font}>
+      <GlobalContext.Provider value={font} changeFont={changeFont}>
         <View style={styles.container}>
           {Platform.OS === "ios" && <StatusBar barStyle="default" />}
           <AppNavigator />
