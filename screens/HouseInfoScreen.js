@@ -5,7 +5,7 @@ import TopBar from "../components/TopBar";
 import HouseInfo from "../components/HouseInfo";
 import EmergencyContact from "../components/EmergencyContact";
 import RaniaConnection from "../components/RaniaConnection";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
   },
   pageText: {
     fontSize: 30,
-    fontFamily: Fonts.brandingFont,
     marginTop: 20,
     marginBottom: 20,
     maxWidth: 600,
@@ -24,25 +23,35 @@ const styles = StyleSheet.create({
 });
 
 export default function HouseInfoScreen(props) {
-  //   if (Dimensions.get("window").width > Dimensions.get("window").height)
-  //     useEffect(() => props.navigation.openDrawer(), []);
   return (
-    <React.Fragment>
-      <TopBar screen={"House Information"} navigation={props.navigation} />
-      <ScrollView style={styles.container}>
-        <HouseInfo />
-        <Text style={styles.pageText}>Emergency Contacts:</Text>
-        <EmergencyContact />
-        <Text style={styles.pageText}>RANIA Connections:</Text>
-        <RaniaConnection icon={faUserMd}>Remote Visit</RaniaConnection>
-        <RaniaConnection icon={faHiking}>
-          Wireless Fall Detection
-        </RaniaConnection>
-        <RaniaConnection icon={faDeaf}>
-          Natural Language Processor
-        </RaniaConnection>
-      </ScrollView>
-    </React.Fragment>
+    <GlobalContext.Consumer>
+      {value => (
+        <React.Fragment>
+          <TopBar screen={"House Information"} navigation={props.navigation} />
+          <ScrollView style={styles.container}>
+            <HouseInfo />
+            <Text
+              style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+            >
+              Emergency Contacts:
+            </Text>
+            <EmergencyContact />
+            <Text
+              style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+            >
+              RANIA Connections:
+            </Text>
+            <RaniaConnection icon={faUserMd}>Remote Visit</RaniaConnection>
+            <RaniaConnection icon={faHiking}>
+              Wireless Fall Detection
+            </RaniaConnection>
+            <RaniaConnection icon={faDeaf}>
+              Natural Language Processor
+            </RaniaConnection>
+          </ScrollView>
+        </React.Fragment>
+      )}
+    </GlobalContext.Consumer>
   );
 }
 HouseInfoScreen.navigationOptions = {

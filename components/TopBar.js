@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
 
 const styles = StyleSheet.create({
   topBarContainer: {
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
   },
   topBarText: {
     fontSize: 42,
-    fontFamily: Fonts.brandingFont,
     color: Colors.primaryColor
   },
   buttonContainer: {
@@ -53,24 +52,33 @@ const styles = StyleSheet.create({
   },
   innerButtonText: {
     fontSize: 25,
-    color: "black",
-    fontFamily: Fonts.mainFont
+    color: "black"
   }
 });
 //@TODO Have hamburgeState change when swipe to open is used
 export default function TopBar(props) {
   return (
-    <View style={styles.topBarContainer}>
-      <TouchableOpacity
-        style={styles.buttonContainer}
-        onPress={props.navigation.toggleDrawer}
-      >
-        <Text style={styles.innerButtonText}>Open Sidebar</Text>
-      </TouchableOpacity>
-      <Text style={styles.topBarText}>
-        RANIA
-        {props.screen === undefined ? "" : `| ${props.screen}`}
-      </Text>
-    </View>
+    <GlobalContext.Consumer>
+      {value => (
+        <View style={styles.topBarContainer}>
+          <TouchableOpacity
+            style={styles.buttonContainer}
+            onPress={props.navigation.toggleDrawer}
+          >
+            <Text
+              style={{ ...styles.innerButtonText, fontFamily: value.mainFont }}
+            >
+              Open Sidebar
+            </Text>
+          </TouchableOpacity>
+          <Text
+            style={{ ...styles.topBarText, fontFamily: value.brandingFont }}
+          >
+            RANIA
+            {props.screen === undefined ? "" : `| ${props.screen}`}
+          </Text>
+        </View>
+      )}
+    </GlobalContext.Consumer>
   );
 }

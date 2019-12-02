@@ -7,7 +7,8 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 import apiUrl from "../constants/dataFetching";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -47,13 +48,11 @@ const styles = StyleSheet.create({
   },
   bigText: {
     fontSize: 50,
-    marginBottom: 10,
-    fontFamily: Fonts.mainFont
+    marginBottom: 10
   },
   innerText: {
     fontSize: 35,
-    marginTop: 7,
-    fontFamily: Fonts.mainFont
+    marginTop: 7
   },
   icon: {
     fontSize: 40,
@@ -104,42 +103,62 @@ export default function PatientInfo() {
   }, [name, birthDate, age, phoneNumber, gender, maritalStatus]);
 
   return (
-    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
-      {fetchingState === "fetching" ? (
-        <ActivityIndicator size="large" color={Colors.primaryColor} />
-      ) : fetchingState === "offline" ? (
-        <Text style={styles.innerText}>
-          You are offline. Please connect to the internet or contact a caretaker
-          for assistance.
-        </Text>
-      ) : (
-        <React.Fragment>
-          <Text style={styles.bigText}>{name}</Text>
-          <View style={styles.iconTextContainer}>
-            <FontAwesomeIcon
-              style={styles.icon}
-              size={40}
-              icon={faBirthdayCake}
-            />
+    <GlobalContext.Consumer>
+      {value => (
+        <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+          {fetchingState === "fetching" ? (
+            <ActivityIndicator size="large" color={Colors.primaryColor} />
+          ) : fetchingState === "offline" ? (
             <Text style={styles.innerText}>
-              {birthDate} [{age} years old]
+              You are offline. Please connect to the internet or contact a
+              caretaker for assistance.
             </Text>
-          </View>
-          <View style={styles.iconTextContainer}>
-            <FontAwesomeIcon style={styles.icon} size={40} icon={faPhone} />
-            <Text style={styles.innerText}>{phoneNumber}</Text>
-          </View>
-          <View style={styles.iconTextContainer}>
-            <FontAwesomeIcon style={styles.icon} size={40} icon={faRing} />
-            <Text style={styles.innerText}>{maritalStatus}</Text>
-          </View>
-          <View style={styles.iconTextContainer}>
-            <FontAwesomeIcon style={styles.icon} size={40} icon={faUser} />
-            <Text style={styles.innerText}>{gender}</Text>
-          </View>
-        </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <Text style={{ ...styles.bigText, fontFamily: value.mainFont }}>
+                {name}
+              </Text>
+              <View style={styles.iconTextContainer}>
+                <FontAwesomeIcon
+                  style={styles.icon}
+                  size={40}
+                  icon={faBirthdayCake}
+                />
+                <Text
+                  style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                >
+                  {birthDate} [{age} years old]
+                </Text>
+              </View>
+              <View style={styles.iconTextContainer}>
+                <FontAwesomeIcon style={styles.icon} size={40} icon={faPhone} />
+                <Text
+                  style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                >
+                  {phoneNumber}
+                </Text>
+              </View>
+              <View style={styles.iconTextContainer}>
+                <FontAwesomeIcon style={styles.icon} size={40} icon={faRing} />
+                <Text
+                  style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                >
+                  {maritalStatus}
+                </Text>
+              </View>
+              <View style={styles.iconTextContainer}>
+                <FontAwesomeIcon style={styles.icon} size={40} icon={faUser} />
+                <Text
+                  style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                >
+                  {gender}
+                </Text>
+              </View>
+            </React.Fragment>
+          )}
+        </Animated.View>
       )}
-    </Animated.View>
+    </GlobalContext.Consumer>
   );
 }
 function calculateAge(birthdayString) {

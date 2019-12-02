@@ -14,7 +14,6 @@ import HouseInfoScreen from "../screens/HouseInfoScreen";
 import NavButton from "../components/NavButton";
 
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -150,7 +149,7 @@ const tabNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: Colors.highlightColor,
       labelStyle: {
-        fontFamily: Fonts.brandingFont,
+        fontFamily: "young-serif",
         color: "white",
         fontSize: 35,
         marginLeft: 70

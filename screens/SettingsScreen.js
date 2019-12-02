@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, Picker, StyleSheet } from "react-native";
 import TopBar from "../components/TopBar";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -10,7 +11,6 @@ const styles = StyleSheet.create({
   },
   pageText: {
     fontSize: 30,
-    fontFamily: Fonts.mainFont,
     marginTop: 20,
     marginBottom: 20,
     maxWidth: 600,
@@ -18,25 +18,30 @@ const styles = StyleSheet.create({
   }
 });
 export default function SettingsScreen(props) {
-  const [font, setFont] = useState(Fonts.mainFont);
+  const [font, setFont] = useState("");
   return (
-    <React.Fragment>
-      <TopBar screen="Home" navigation={props.navigation} />
-      <View style={styles.container}>
-        <Text style={styles.pageText}>Font settings: {font}</Text>
-        <Picker
-          selectedValue={font}
-          style={{ height: 50, width: 300 }}
-          onValueChange={itemValue => {
-            setFont(itemValue);
-            Fonts.mainFont = font;
-          }}
-        >
-          <Picker.Item label="Classic" value="fengardo-neue" />
-          <Picker.Item label="Dyslexia friendly" value="open-dyslexic" />
-        </Picker>
-      </View>
-    </React.Fragment>
+    <GlobalContext.Consumer>
+      {value => (
+        <React.Fragment>
+          <TopBar screen="Home" navigation={props.navigation} />
+          <View style={styles.container}>
+            <Text style={{ ...styles.pageText, fontFamily: value.mainFont }}>
+              Font settings: {font}
+            </Text>
+            <Picker
+              selectedValue={font}
+              style={{ height: 50, width: 300 }}
+              onValueChange={itemValue => {
+                setFont(itemValue);
+              }}
+            >
+              <Picker.Item label="Classic" value="fengardo-neue" />
+              <Picker.Item label="Dyslexia friendly" value="open-dyslexic" />
+            </Picker>
+          </View>
+        </React.Fragment>
+      )}
+    </GlobalContext.Consumer>
   );
 }
 

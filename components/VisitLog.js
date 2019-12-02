@@ -7,7 +7,7 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faClipboardList,
@@ -54,8 +54,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   innerText: {
-    fontSize: 35,
-    fontFamily: Fonts.mainFont
+    fontSize: 25
   },
   icon: {
     fontSize: 40,
@@ -87,45 +86,77 @@ export default function VisitLog(visit) {
   }, []);
 
   return (
-    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
-      {visit.visit === undefined ? (
-        <ActivityIndicator size="large" color={Colors.primaryColor} />
-      ) : (
-        <React.Fragment>
-          <FontAwesomeIcon
-            style={styles.icon}
-            size={40}
-            icon={faClipboardList}
-          />
-          <Text style={styles.innerText}>
-            {fetchedDateAsDate.toLocaleDateString()} at {correctedTime}
-          </Text>
-          <ShowViewButton text="View">
-            <View style={styles.iconTextContainer}>
-              <FontAwesomeIcon style={styles.icon} size={40} icon={faUserMd} />
-              <Text style={styles.innerText}>{visit.visit.doctor}</Text>
-            </View>
-            <View style={styles.iconTextContainer}>
-              <FontAwesomeIcon style={styles.icon} size={40} icon={faClock} />
-              <Text style={styles.innerText}>{visit.visit.length}</Text>
-            </View>
-            <View style={styles.iconTextContainer}>
-              <FontAwesomeIcon style={styles.icon} size={40} icon={faArchive} />
-              <Text style={styles.innerText}>{visit.visit.type}</Text>
-            </View>
-            <View style={styles.iconTextContainer} />
-            <View style={styles.iconTextContainerWide}>
+    <GlobalContext.Consumer>
+      {value => (
+        <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+          {visit.visit === undefined ? (
+            <ActivityIndicator size="large" color={Colors.primaryColor} />
+          ) : (
+            <React.Fragment>
               <FontAwesomeIcon
                 style={styles.icon}
                 size={40}
-                icon={faNotesMedical}
+                icon={faClipboardList}
               />
-              <Text style={styles.innerText}>{visit.visit.notes}</Text>
-            </View>
-          </ShowViewButton>
-        </React.Fragment>
+              <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+                {fetchedDateAsDate.toLocaleDateString()} at {correctedTime}
+              </Text>
+              <ShowViewButton text="View">
+                <View style={styles.iconTextContainer}>
+                  <FontAwesomeIcon
+                    style={styles.icon}
+                    size={40}
+                    icon={faUserMd}
+                  />
+                  <Text
+                    style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                  >
+                    {visit.visit.doctor}
+                  </Text>
+                </View>
+                <View style={styles.iconTextContainer}>
+                  <FontAwesomeIcon
+                    style={styles.icon}
+                    size={40}
+                    icon={faClock}
+                  />
+                  <Text
+                    style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                  >
+                    {visit.visit.length}
+                  </Text>
+                </View>
+                <View style={styles.iconTextContainer}>
+                  <FontAwesomeIcon
+                    style={styles.icon}
+                    size={40}
+                    icon={faArchive}
+                  />
+                  <Text
+                    style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                  >
+                    {visit.visit.type}
+                  </Text>
+                </View>
+                <View style={styles.iconTextContainer} />
+                <View style={styles.iconTextContainerWide}>
+                  <FontAwesomeIcon
+                    style={styles.icon}
+                    size={40}
+                    icon={faNotesMedical}
+                  />
+                  <Text
+                    style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                  >
+                    {visit.visit.notes}
+                  </Text>
+                </View>
+              </ShowViewButton>
+            </React.Fragment>
+          )}
+        </Animated.View>
       )}
-    </Animated.View>
+    </GlobalContext.Consumer>
   );
 }
 //

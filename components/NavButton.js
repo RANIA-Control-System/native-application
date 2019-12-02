@@ -1,7 +1,8 @@
 import React from "react";
 import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
 import { withNavigation } from "react-navigation";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 import Colors from "../constants/Colors";
 
 const styles = StyleSheet.create({
@@ -45,34 +46,40 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 35,
-    color: "black",
-    fontFamily: Fonts.mainFont
+    color: "black"
   },
   innerTextSm: {
     fontSize: 25,
-    color: "black",
-    fontFamily: Fonts.mainFont
+    color: "black"
   }
 });
 class NavButton extends React.Component {
   render() {
     return (
-      <TouchableHighlight
-        onPress={() => this.props.navigation.navigate(this.props.navlocation)}
-        style={
-          this.props.size == "sm"
-            ? styles.itemContainerSm
-            : styles.itemContainer
-        }
-      >
-        <Text
-          style={
-            this.props.size == "sm" ? styles.innerTextSm : styles.innerText
-          }
-        >
-          {this.props.text}
-        </Text>
-      </TouchableHighlight>
+      <GlobalContext.Consumer>
+        {value => (
+          <TouchableHighlight
+            onPress={() =>
+              this.props.navigation.navigate(this.props.navlocation)
+            }
+            style={
+              this.props.size == "sm"
+                ? styles.itemContainerSm
+                : styles.itemContainer
+            }
+          >
+            <Text
+              style={
+                this.props.size == "sm"
+                  ? { ...styles.innerTextSm, fontFamily: value.mainFont }
+                  : { ...styles.innerText, fontFamily: value.mainFont }
+              }
+            >
+              {this.props.text}
+            </Text>
+          </TouchableHighlight>
+        )}
+      </GlobalContext.Consumer>
     );
   }
 }

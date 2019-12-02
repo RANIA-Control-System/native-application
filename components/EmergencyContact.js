@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faHome,
@@ -40,8 +41,7 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 35,
-    marginTop: 7,
-    fontFamily: Fonts.mainFont
+    marginTop: 7
   },
   icon: {
     marginRight: 15,
@@ -56,24 +56,35 @@ export default function EmergencyContact(props) {
   const [relationship, setRelationship] = useState("Wife");
 
   return (
-    <View style={styles.itemContainer}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={35} icon={faUser} />
-        <Text style={styles.innerText}>{name}</Text>
-      </View>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={35} icon={faLink} />
-        <Text style={styles.innerText}>{relationship}</Text>
-      </View>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={35} icon={faPhone} />
-        <Text style={styles.innerText}>{phoneNumber}</Text>
-      </View>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={35} icon={faHome} />
-        <Text style={styles.innerText}>{residentStatus}</Text>
-      </View>
-    </View>
+    <GlobalContext.Consumer>
+      {value => (
+        <View style={styles.itemContainer}>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={35} icon={faUser} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {name}
+            </Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={35} icon={faLink} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {relationship}
+            </Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={35} icon={faPhone} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {phoneNumber}
+            </Text>
+          </View>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={35} icon={faHome} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {residentStatus}
+            </Text>
+          </View>
+        </View>
+      )}
+    </GlobalContext.Consumer>
   );
 }
-//

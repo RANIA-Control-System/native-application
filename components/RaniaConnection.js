@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Animated } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import ShowViewButton from "./ShowViewButton";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   innerText: {
-    fontSize: 35,
-    marginTop: 7,
-    fontFamily: Fonts.mainFont
+    fontSize: 30,
+    marginTop: 7
   },
   icon: {
     marginLeft: 15,
@@ -47,11 +46,17 @@ const styles = StyleSheet.create({
 //@TODO: Implement data fetching for individual document
 export default function DocumentLoader(props) {
   return (
-    <View style={styles.itemContainer}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
-        <Text style={styles.innerText}>{props.children}</Text>
-      </View>
-    </View>
+    <GlobalContext.Consumer>
+      {value => (
+        <View style={styles.itemContainer}>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {props.children}
+            </Text>
+          </View>
+        </View>
+      )}
+    </GlobalContext.Consumer>
   );
 }

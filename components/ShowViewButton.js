@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -43,9 +43,8 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   innerText: {
-    fontSize: 35,
-    color: "black",
-    fontFamily: Fonts.mainFont
+    fontSize: 30,
+    color: "black"
   }
 });
 
@@ -56,18 +55,24 @@ export default function ShowViewButton(props) {
     setViewState(viewState === 0 ? 1 : 0);
   }
   return (
-    <React.Fragment>
-      <TouchableHighlight
-        onPress={toggleState}
-        style={
-          props.size == "wide" ? styles.itemContainerWide : styles.itemContainer
-        }
-      >
-        <Text style={styles.innerText}>
-          {viewState === 0 ? props.text : "Hide"}
-        </Text>
-      </TouchableHighlight>
-      {viewState === 0 ? null : props.children}
-    </React.Fragment>
+    <GlobalContext.Consumer>
+      {value => (
+        <React.Fragment>
+          <TouchableHighlight
+            onPress={toggleState}
+            style={
+              props.size == "wide"
+                ? styles.itemContainerWide
+                : styles.itemContainer
+            }
+          >
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {viewState === 0 ? props.text : "Hide"}
+            </Text>
+          </TouchableHighlight>
+          {viewState === 0 ? null : props.children}
+        </React.Fragment>
+      )}
+    </GlobalContext.Consumer>
   );
 }

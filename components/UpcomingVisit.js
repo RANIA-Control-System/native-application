@@ -7,7 +7,7 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 const styles = StyleSheet.create({
@@ -39,18 +39,15 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   innerText: {
-    fontSize: 35,
-    fontFamily: Fonts.mainFont,
+    fontSize: 30,
     textAlign: "center"
   },
   dateText: {
-    fontSize: 30,
-    fontFamily: Fonts.mainFont,
+    fontSize: 25,
     textAlign: "center"
   },
   dateTextEmphasize: {
-    fontSize: 35,
-    fontFamily: Fonts.mainFont,
+    fontSize: 25,
     textAlign: "center"
   },
   icon: {
@@ -84,36 +81,69 @@ export default function UpcomingVisit(visit) {
   }, []);
 
   return (
-    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
-      {visit.visit === undefined ? (
-        <ActivityIndicator size="large" color={Colors.primaryColor} />
-      ) : (
-        <React.Fragment>
-          <View style={styles.iconTextContainer}>
-            <FontAwesomeIcon style={styles.icon} size={40} icon={faCalendar} />
-            <Text style={styles.innerText}>Next Appointment:</Text>
-          </View>
-          {visit.visit === null ? (
-            <View style={styles.upcomingContainer}>
-              <Text style={styles.dateText}>No</Text>
-              <Text style={styles.dateText}>appointment</Text>
-              <Text style={styles.dateText}>scheduled</Text>
-            </View>
+    <GlobalContext.Consumer>
+      {value => (
+        <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+          {visit.visit === undefined ? (
+            <ActivityIndicator size="large" color={Colors.primaryColor} />
           ) : (
-            <View style={styles.upcomingContainer}>
-              <Text style={styles.dateText}>
-                {weekdays[fetchedDateAsDate.getDay()]}
-              </Text>
-              <Text style={styles.dateText}>
-                {fetchedDateAsDate.toLocaleDateString()}
-              </Text>
-              <Text style={styles.dateTextEmphasize}>
-                {visit.visit.startTime}
-              </Text>
-            </View>
+            <React.Fragment>
+              <View style={styles.iconTextContainer}>
+                <FontAwesomeIcon
+                  style={styles.icon}
+                  size={40}
+                  icon={faCalendar}
+                />
+                <Text
+                  style={{ ...styles.innerText, fontFamily: value.mainFont }}
+                >
+                  Next Appointment:
+                </Text>
+              </View>
+              {visit.visit === null ? (
+                <View style={styles.upcomingContainer}>
+                  <Text
+                    style={{ ...styles.dateText, fontFamily: value.mainFont }}
+                  >
+                    No
+                  </Text>
+                  <Text
+                    style={{ ...styles.dateText, fontFamily: value.mainFont }}
+                  >
+                    appointment
+                  </Text>
+                  <Text
+                    style={{ ...styles.dateText, fontFamily: value.mainFont }}
+                  >
+                    scheduled
+                  </Text>
+                </View>
+              ) : (
+                <View style={styles.upcomingContainer}>
+                  <Text
+                    style={{ ...styles.dateText, fontFamily: value.mainFont }}
+                  >
+                    {weekdays[fetchedDateAsDate.getDay()]}
+                  </Text>
+                  <Text
+                    style={{ ...styles.dateText, fontFamily: value.mainFont }}
+                  >
+                    {fetchedDateAsDate.toLocaleDateString()}
+                  </Text>
+                  <Text
+                    style={{
+                      ...styles.dateTextEmphasize,
+                      fontFamily: values.mainFont
+                    }}
+                  >
+                    {visit.visit.startTime}
+                  </Text>
+                </View>
+              )}
+            </React.Fragment>
           )}
-        </React.Fragment>
+        </Animated.View>
       )}
-    </Animated.View>
+    </GlobalContext.Consumer>
   );
 }

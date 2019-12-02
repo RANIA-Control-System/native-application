@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, Text, View, StyleSheet } from "react-native";
+import { GlobalContext } from "../context/global-context";
 
 import TopBar from "../components/TopBar";
 import VisitLog from "../components/VisitLog";
@@ -7,7 +8,6 @@ import UpcomingVisit from "../components/UpcomingVisit";
 import ShowViewButton from "../components/ShowViewButton";
 import apiUrl from "../constants/dataFetching";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
   },
   pageText: {
     fontSize: 30,
-    fontFamily: Fonts.brandingFont,
     marginTop: 20,
     marginBottom: 5,
     maxWidth: 600,
@@ -95,39 +94,53 @@ export default function RemoteVisitScreen(props) {
 
   const VisitLogs = loggedVisits.map(visit => <VisitLog visit={visit} />);
   return (
-    <React.Fragment>
-      <TopBar
-        screen={"Remote Visit"}
-        navigation={props.navigation}
-        wasDrawerOpen={props.navigation.state.isDrawerOpen}
-      />
-      <ScrollView style={styles.container}>
-        <ShowViewButton text="Request Visit" size="wide">
-          <Text style={styles.pageText}>
-            To request a visit, open up the remote visit app MORE INFO HERE
-          </Text>
-        </ShowViewButton>
-        <ShowViewButton text="Attend Visit" size="wide">
-          <Text style={styles.pageText}>
-            To attend visit, open up the remote visit app MORE INFO HERE
-          </Text>
-        </ShowViewButton>
-        {fetchingState === "offline" ? (
-          <View style={styles.itemContainer}>
-            <Text style={styles.pageText}>
-              You are offline. Please connect to the internet or contact a
-              caretaker for assistance.
-            </Text>
-          </View>
-        ) : (
-          <React.Fragment>
-            <UpcomingVisit visit={upcomingVisit} />
-            <Text style={styles.pageText}>Visit History:</Text>
-            {VisitLogs}
-          </React.Fragment>
-        )}
-      </ScrollView>
-    </React.Fragment>
+    <GlobalContext.Consumer>
+      {value => (
+        <React.Fragment>
+          <TopBar
+            screen={"Remote Visit"}
+            navigation={props.navigation}
+            wasDrawerOpen={props.navigation.state.isDrawerOpen}
+          />
+          <ScrollView style={styles.container}>
+            <ShowViewButton text="Request Visit" size="wide">
+              <Text
+                style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+              >
+                To request a visit, open up the remote visit app MORE INFO HERE
+              </Text>
+            </ShowViewButton>
+            <ShowViewButton text="Attend Visit" size="wide">
+              <Text
+                style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+              >
+                To attend visit, open up the remote visit app MORE INFO HERE
+              </Text>
+            </ShowViewButton>
+            {fetchingState === "offline" ? (
+              <View style={styles.itemContainer}>
+                <Text
+                  style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+                >
+                  You are offline. Please connect to the internet or contact a
+                  caretaker for assistance.
+                </Text>
+              </View>
+            ) : (
+              <React.Fragment>
+                <UpcomingVisit visit={upcomingVisit} />
+                <Text
+                  style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+                >
+                  Visit History:
+                </Text>
+                {VisitLogs}
+              </React.Fragment>
+            )}
+          </ScrollView>
+        </React.Fragment>
+      )}
+    </GlobalContext.Consumer>
   );
 }
 RemoteVisitScreen.navigationOptions = {

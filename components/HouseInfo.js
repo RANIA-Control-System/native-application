@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 
@@ -34,13 +35,11 @@ const styles = StyleSheet.create({
   },
   bigText: {
     fontSize: 50,
-    marginTop: 7,
-    fontFamily: Fonts.mainFont
+    marginTop: 7
   },
   innerText: {
     fontSize: 35,
-    marginTop: 7,
-    fontFamily: Fonts.mainFont
+    marginTop: 7
   },
   icon: {
     fontSize: 50,
@@ -54,13 +53,21 @@ export default function HouseInfo(props) {
   const [cityStateZip, setCityStateZip] = useState("Morgantown, WV 26501");
 
   return (
-    <View style={styles.itemContainer}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={50} icon={faHome} />
-        <Text style={styles.bigText}>{address}</Text>
-      </View>
-      <Text style={styles.innerText}>{cityStateZip}</Text>
-    </View>
+    <GlobalContext.Consumer>
+      {value => (
+        <View style={styles.itemContainer}>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={50} icon={faHome} />
+            <Text style={{ ...styles.bigText, fontFamily: value.mainFont }}>
+              {address}
+            </Text>
+          </View>
+          <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+            {cityStateZip}
+          </Text>
+        </View>
+      )}
+    </GlobalContext.Consumer>
   );
 }
 //

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Animated } from "react-native";
 import Colors from "../constants/Colors";
-import Fonts from "../constants/FontSelection";
+import { GlobalContext } from "../context/global-context";
+
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import ShowViewButton from "../components/ShowViewButton";
@@ -32,18 +33,12 @@ const styles = StyleSheet.create({
   },
   iconTextContainer: {
     flexDirection: "row",
-    width: 200,
-    marginBottom: 10
-  },
-  iconTextContainerWide: {
-    flexDirection: "row",
-    width: 500,
+    width: 300,
     marginBottom: 10
   },
   innerText: {
-    fontSize: 35,
-    marginTop: 7,
-    fontFamily: Fonts.mainFont
+    fontSize: 30,
+    marginTop: 7
   },
   icon: {
     fontSize: 40,
@@ -64,14 +59,20 @@ export default function DocumentLoader(props) {
   }, []);
 
   return (
-    <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={faFile} />
-        <Text style={styles.innerText}>fileName.doc</Text>
-      </View>
-      <ShowViewButton text="Open">
-        <Text>TODO: Implement document support</Text>
-      </ShowViewButton>
-    </Animated.View>
+    <GlobalContext.Consumer>
+      {value => (
+        <Animated.View style={{ ...styles.itemContainer, opacity: fadeAnim }}>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={faFile} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              fileName.doc
+            </Text>
+          </View>
+          <ShowViewButton text="Open">
+            <Text>TODO: Implement document support</Text>
+          </ShowViewButton>
+        </Animated.View>
+      )}
+    </GlobalContext.Consumer>
   );
 }
