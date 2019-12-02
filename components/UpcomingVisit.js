@@ -7,6 +7,7 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faCalendar } from "@fortawesome/free-solid-svg-icons";
 const styles = StyleSheet.create({
@@ -39,17 +40,17 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 35,
-    fontFamily: "fengardo-neue",
+    fontFamily: Fonts.mainFont,
     textAlign: "center"
   },
   dateText: {
     fontSize: 30,
-    fontFamily: "fengardo-neue",
+    fontFamily: Fonts.mainFont,
     textAlign: "center"
   },
   dateTextEmphasize: {
     fontSize: 35,
-    fontFamily: "fengardo-neue",
+    fontFamily: Fonts.mainFont,
     textAlign: "center"
   },
   icon: {

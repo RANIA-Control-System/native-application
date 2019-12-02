@@ -14,6 +14,7 @@ import HouseInfoScreen from "../screens/HouseInfoScreen";
 import NavButton from "../components/NavButton";
 
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -122,7 +123,7 @@ const SettingsStack = createStackNavigator(
 );
 
 SettingsStack.navigationOptions = {
-  title: "Other Info",
+  title: "Settings",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
       {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
@@ -134,12 +135,12 @@ SettingsStack.path = "";
 
 const tabNavigator = createDrawerNavigator(
   {
+    SettingsStack,
     RemoteStack,
     PatientInfoStack,
     HouseInfoStack,
     HomeStack,
-    LinksStack,
-    SettingsStack
+    LinksStack
   },
   {
     drawerBackgroundColor: Colors.primaryColor,
@@ -149,7 +150,7 @@ const tabNavigator = createDrawerNavigator(
     contentOptions: {
       activeTintColor: Colors.highlightColor,
       labelStyle: {
-        fontFamily: "young-serif",
+        fontFamily: Fonts.brandingFont,
         color: "white",
         fontSize: 35,
         marginLeft: 70

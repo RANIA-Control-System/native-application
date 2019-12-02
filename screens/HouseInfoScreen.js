@@ -5,6 +5,8 @@ import TopBar from "../components/TopBar";
 import HouseInfo from "../components/HouseInfo";
 import EmergencyContact from "../components/EmergencyContact";
 import RaniaConnection from "../components/RaniaConnection";
+import Fonts from "../constants/FontSelection";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -13,7 +15,7 @@ const styles = StyleSheet.create({
   },
   pageText: {
     fontSize: 30,
-    fontFamily: "young-serif",
+    fontFamily: Fonts.brandingFont,
     marginTop: 20,
     marginBottom: 20,
     maxWidth: 600,
@@ -26,11 +28,7 @@ export default function HouseInfoScreen(props) {
   //     useEffect(() => props.navigation.openDrawer(), []);
   return (
     <React.Fragment>
-      <TopBar
-        screen={"House Information"}
-        navigation={props.navigation}
-        wasDrawerOpen={props.navigation.state.isDrawerOpen}
-      />
+      <TopBar screen={"House Information"} navigation={props.navigation} />
       <ScrollView style={styles.container}>
         <HouseInfo />
         <Text style={styles.pageText}>Emergency Contacts:</Text>

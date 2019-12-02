@@ -7,6 +7,7 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faClipboardList,
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 35,
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   icon: {
     fontSize: 40,

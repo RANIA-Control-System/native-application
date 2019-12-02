@@ -4,6 +4,7 @@ import { ScrollView, Text, StyleSheet, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import PatientInfo from "../components/PatientInfo";
 import DocumentLoader from "../components/DocumentLoader";
+import Fonts from "../constants/FontSelection";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   },
   pageText: {
     fontSize: 30,
-    fontFamily: "young-serif",
+    fontFamily: Fonts.brandingFont,
     marginTop: 20,
     marginBottom: 20,
     maxWidth: 600,
@@ -23,11 +24,7 @@ const styles = StyleSheet.create({
 export default function PatientInfoScreen(props) {
   return (
     <React.Fragment>
-      <TopBar
-        screen={"Patient Information"}
-        navigation={props.navigation}
-        wasDrawerOpen={props.navigation.state.isDrawerOpen}
-      />
+      <TopBar screen={"Patient Information"} navigation={props.navigation} />
       <ScrollView style={styles.container}>
         <PatientInfo />
         <Text style={styles.pageText}>Medical Documents:</Text>

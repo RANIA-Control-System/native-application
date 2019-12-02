@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Animated } from "react-native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import ShowViewButton from "../components/ShowViewButton";
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   innerText: {
     fontSize: 35,
     marginTop: 7,
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   icon: {
     fontSize: 40,

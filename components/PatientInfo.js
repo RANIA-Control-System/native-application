@@ -7,6 +7,7 @@ import {
   Animated
 } from "react-native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 import apiUrl from "../constants/dataFetching";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -15,6 +16,7 @@ import {
   faPhone,
   faUser
 } from "@fortawesome/free-solid-svg-icons";
+
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
@@ -46,12 +48,12 @@ const styles = StyleSheet.create({
   bigText: {
     fontSize: 50,
     marginBottom: 10,
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   innerText: {
     fontSize: 35,
     marginTop: 7,
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   icon: {
     fontSize: 40,

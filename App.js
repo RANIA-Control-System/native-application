@@ -4,7 +4,7 @@ import * as Font from "expo-font";
 import React, { useState } from "react";
 import { Platform, StatusBar, StyleSheet, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
+import { GlobalContext, fonts } from "./context/global-context";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import {
@@ -55,7 +55,7 @@ import AppNavigator from "./navigation/AppNavigator";
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
-
+  const [font, setFont] = useState(fonts.dyslexic);
   if (!isLoadingComplete && !props.skipLoadingScreen) {
     return (
       <AppLoading
@@ -66,10 +66,12 @@ export default function App(props) {
     );
   } else {
     return (
-      <View style={styles.container}>
-        {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-        <AppNavigator />
-      </View>
+      <GlobalContext.Provider value={font}>
+        <View style={styles.container}>
+          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
+      </GlobalContext.Provider>
     );
   }
 }
@@ -87,7 +89,8 @@ async function loadResourcesAsync() {
       // remove this if you are not using it in your app
       "young-serif": require("./assets/fonts/YoungSerif-Regular.otf"),
       "source-serif": require("./assets/fonts/SourceSerifPro-Regular.otf"),
-      "fengardo-neue": require("./assets/fonts/FengardoNeue_Regular.otf")
+      "fengardo-neue": require("./assets/fonts/FengardoNeue_Regular.otf"),
+      "open-dyslexic": require("./assets/fonts/OpenDyslexic-Regular.otf")
     })
   ]);
 }

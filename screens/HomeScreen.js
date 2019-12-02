@@ -24,11 +24,7 @@ export default function HomeScreen(props) {
 
   return (
     <React.Fragment>
-      <TopBar
-        screen="Home"
-        navigation={props.navigation}
-        wasDrawerOpen={props.navigation.state.isDrawerOpen}
-      />
+      <TopBar screen="Home" navigation={props.navigation} />
       <ScrollView style={styles.container}>
         <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
         <ModuleItem

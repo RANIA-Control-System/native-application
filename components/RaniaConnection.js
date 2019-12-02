@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Animated } from "react-native";
 import Colors from "../constants/Colors";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import ShowViewButton from "./ShowViewButton";
-
+import Fonts from "../constants/FontSelection";
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   innerText: {
     fontSize: 35,
     marginTop: 7,
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   icon: {
     marginLeft: 15,

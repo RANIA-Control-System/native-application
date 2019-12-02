@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
   faHome,
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
   innerText: {
     fontSize: 35,
     marginTop: 7,
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   icon: {
     marginRight: 15,

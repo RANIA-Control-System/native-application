@@ -1,6 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
+import { GlobalContext } from "../context/global-context";
 import NavButton from "./NavButton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -34,8 +35,7 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 40,
-    marginTop: 7,
-    fontFamily: "fengardo-neue"
+    marginTop: 7
   },
   icon: {
     fontSize: 40,
@@ -44,16 +44,21 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-
+// ModuleItem.contextType = GlobalContext;
 export default function ModuleItem(props) {
   return (
-    <View style={styles.itemContainer}>
-      <View style={styles.iconTextContainer}>
-        <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
-        <Text style={styles.innerText}>{props.text}</Text>
-      </View>
-      <NavButton text="View" size="md" navlocation={props.navlocation} />
-    </View>
+    <GlobalContext.Consumer>
+      {value => (
+        <View style={styles.itemContainer}>
+          <View style={styles.iconTextContainer}>
+            <FontAwesomeIcon style={styles.icon} size={40} icon={props.icon} />
+            <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
+              {props.text}
+            </Text>
+          </View>
+          <NavButton text="View" size="md" navlocation={props.navlocation} />
+        </View>
+      )}
+    </GlobalContext.Consumer>
   );
 }
-//

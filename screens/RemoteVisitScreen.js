@@ -7,6 +7,7 @@ import UpcomingVisit from "../components/UpcomingVisit";
 import ShowViewButton from "../components/ShowViewButton";
 import apiUrl from "../constants/dataFetching";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
   pageText: {
     fontSize: 30,
-    fontFamily: "young-serif",
+    fontFamily: Fonts.brandingFont,
     marginTop: 20,
     marginBottom: 5,
     maxWidth: 600,

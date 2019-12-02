@@ -1,8 +1,9 @@
 import React from "react";
 import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
 import { withNavigation } from "react-navigation";
-
+import Fonts from "../constants/FontSelection";
 import Colors from "../constants/Colors";
+
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: Colors.highlightColor,
@@ -45,12 +46,12 @@ const styles = StyleSheet.create({
   innerText: {
     fontSize: 35,
     color: "black",
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   },
   innerTextSm: {
     fontSize: 25,
     color: "black",
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   }
 });
 class NavButton extends React.Component {

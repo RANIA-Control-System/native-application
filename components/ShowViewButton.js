@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
+import Fonts from "../constants/FontSelection";
 
 const styles = StyleSheet.create({
   itemContainer: {
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   innerText: {
     fontSize: 35,
     color: "black",
-    fontFamily: "fengardo-neue"
+    fontFamily: Fonts.mainFont
   }
 });
 
