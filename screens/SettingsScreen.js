@@ -24,7 +24,7 @@ export default function SettingsScreen(props) {
     <GlobalContext.Consumer>
       {value => (
         <React.Fragment>
-          <TopBar screen="Home" navigation={props.navigation} />
+          <TopBar screen="Settings" navigation={props.navigation} />
           <View style={styles.container}>
             <Text style={{ ...styles.pageText, fontFamily: value.mainFont }}>
               Font settings:

@@ -26,7 +26,8 @@ import {
   faFile,
   faBars,
   faHome,
-  faLink
+  faLink,
+  faCogs
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -49,7 +50,8 @@ library.add(
   faFile,
   faBars,
   faHome,
-  faLink
+  faLink,
+  faCogs
 );
 import AppNavigator from "./navigation/AppNavigator";
 

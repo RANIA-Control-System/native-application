@@ -37,11 +37,7 @@ export default function HomeScreen(props) {
           icon="deaf"
           navlocation="RemoteVist"
         />
-        <ModuleItem
-          text="Module Name"
-          icon="question-circle"
-          navlocation="RemoteVist"
-        />
+        <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
         <DevelopmentModeNotice />
       </ScrollView>
     </React.Fragment>

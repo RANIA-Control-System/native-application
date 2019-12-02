@@ -28,7 +28,7 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  title: "Medical Info",
+  title: "Home",
   // drawerLockMode: "locked-open",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
@@ -134,12 +134,11 @@ SettingsStack.path = "";
 
 const tabNavigator = createDrawerNavigator(
   {
-    SettingsStack,
+    HomeStack,
     RemoteStack,
     PatientInfoStack,
     HouseInfoStack,
-    HomeStack,
-    LinksStack
+    SettingsStack
   },
   {
     drawerBackgroundColor: Colors.primaryColor,

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
   iconTextContainer: {
     flexDirection: "row",
-    width: 200,
+    width: 250,
     marginBottom: 10
   },
   iconTextContainerWide: {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   innerText: {
-    fontSize: 25
+    fontSize: 26
   },
   icon: {
     fontSize: 40,

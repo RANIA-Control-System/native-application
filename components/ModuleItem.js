@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     flexDirection: "row"
   },
   innerText: {
-    fontSize: 40,
+    fontSize: 35,
     marginTop: 7
   },
   icon: {
