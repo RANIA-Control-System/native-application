@@ -13,5 +13,5 @@ export default {
   noticeText: "#fff",
   primaryColor: "#4A3B4E",
   secondaryColor: "#F9E0FF",
-  highlightColor: "#5FB094"
+  highlightColor: "#9FCCBC"
 };

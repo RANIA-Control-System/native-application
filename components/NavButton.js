@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 35,
-    color: "white",
+    color: "black",
     fontFamily: "fengardo-neue"
   },
   innerTextSm: {
     fontSize: 25,
-    color: "white",
+    color: "black",
     fontFamily: "fengardo-neue"
   }
 });
