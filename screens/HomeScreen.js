@@ -1,12 +1,14 @@
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet, Text, Dimensions } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import ModuleItem from "../components/ModuleItem";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    FlexDirecton: "column",
+    flexDirection: "column"
+  },
+  centerView: {
     alignItems: "center"
   },
   developmentModeText: {
@@ -26,19 +28,21 @@ export default function HomeScreen(props) {
     <React.Fragment>
       <TopBar screen="Home" navigation={props.navigation} />
       <ScrollView style={styles.container}>
-        <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
-        <ModuleItem
-          text="Fall Detection"
-          icon="hiking"
-          navlocation="RemoteVist"
-        />
-        <ModuleItem
-          text="Natural Language"
-          icon="deaf"
-          navlocation="RemoteVist"
-        />
-        <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
-        <DevelopmentModeNotice />
+        <View style={styles.centerViews}>
+          <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
+          <ModuleItem
+            text="Fall Detection"
+            icon="hiking"
+            navlocation="RemoteVist"
+          />
+          <ModuleItem
+            text="Natural Language"
+            icon="deaf"
+            navlocation="RemoteVist"
+          />
+          <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
+          {/* <DevelopmentModeNotice /> */}
+        </View>
       </ScrollView>
     </React.Fragment>
   );

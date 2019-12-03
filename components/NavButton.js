@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
     elevation: 4
   },
   innerText: {
-    fontSize: 35,
+    fontSize: 30,
     color: "black"
   },
   innerTextSm: {
-    fontSize: 25,
+    fontSize: 20,
     color: "black"
   }
 });

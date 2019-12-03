@@ -34,8 +34,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "center",
+
     backgroundColor: "#fff"
+  },
+  centerView: {
+    alignItems: "center"
   },
   pageText: {
     fontSize: 30,
@@ -103,40 +106,49 @@ export default function RemoteVisitScreen(props) {
             wasDrawerOpen={props.navigation.state.isDrawerOpen}
           />
           <ScrollView style={styles.container}>
-            <ShowViewButton text="Request Visit" size="wide">
-              <Text
-                style={{ ...styles.pageText, fontFamily: value.brandingFont }}
-              >
-                To request a visit, open up the remote visit app MORE INFO HERE
-              </Text>
-            </ShowViewButton>
-            <ShowViewButton text="Attend Visit" size="wide">
-              <Text
-                style={{ ...styles.pageText, fontFamily: value.brandingFont }}
-              >
-                To attend visit, open up the remote visit app MORE INFO HERE
-              </Text>
-            </ShowViewButton>
-            {fetchingState === "offline" ? (
-              <View style={styles.itemContainer}>
+            <View style={styles.centerView}>
+              <ShowViewButton text="Request Visit" size="wide">
                 <Text
                   style={{ ...styles.pageText, fontFamily: value.brandingFont }}
                 >
-                  You are offline. Please connect to the internet or contact a
-                  caretaker for assistance.
+                  To request a visit, open up the remote visit app MORE INFO
+                  HERE
                 </Text>
-              </View>
-            ) : (
-              <React.Fragment>
-                <UpcomingVisit visit={upcomingVisit} />
+              </ShowViewButton>
+              <ShowViewButton text="Attend Visit" size="wide">
                 <Text
                   style={{ ...styles.pageText, fontFamily: value.brandingFont }}
                 >
-                  Visit History:
+                  To attend visit, open up the remote visit app MORE INFO HERE
                 </Text>
-                {VisitLogs}
-              </React.Fragment>
-            )}
+              </ShowViewButton>
+              {fetchingState === "offline" ? (
+                <View style={styles.itemContainer}>
+                  <Text
+                    style={{
+                      ...styles.pageText,
+                      fontFamily: value.brandingFont
+                    }}
+                  >
+                    You are offline. Please connect to the internet or contact a
+                    caretaker for assistance.
+                  </Text>
+                </View>
+              ) : (
+                <React.Fragment>
+                  <UpcomingVisit visit={upcomingVisit} />
+                  <Text
+                    style={{
+                      ...styles.pageText,
+                      fontFamily: value.brandingFont
+                    }}
+                  >
+                    Visit History:
+                  </Text>
+                  {VisitLogs}
+                </React.Fragment>
+              )}
+            </View>
           </ScrollView>
         </React.Fragment>
       )}
