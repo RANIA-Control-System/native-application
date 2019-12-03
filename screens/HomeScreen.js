@@ -1,13 +1,15 @@
 import * as WebBrowser from "expo-web-browser";
 import React, { useEffect } from "react";
-import { ScrollView, StyleSheet, Text, Dimensions } from "react-native";
+import { ScrollView, View, StyleSheet, Text, Dimensions } from "react-native";
 import TopBar from "../components/TopBar";
 import ModuleItem from "../components/ModuleItem";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    FlexDirecton: "column",
-    alignItems: "center"
+    flexDirection: "column"
+  },
+  centerView: {
+	      alignItems: "center"
   },
   developmentModeText: {
     marginBottom: 20,
@@ -26,6 +28,7 @@ export default function HomeScreen(props) {
     <React.Fragment>
       <TopBar screen="Home" navigation={props.navigation} />
       <ScrollView style={styles.container}>
+	  <View style={styles.centerView}>
         <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
         <ModuleItem
           text="Fall Detection"
@@ -39,6 +42,7 @@ export default function HomeScreen(props) {
         />
         <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
         <DevelopmentModeNotice />
+		</View>
       </ScrollView>
     </React.Fragment>
   );
