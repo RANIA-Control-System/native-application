@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     width: 600,
     margin: 10,
-    padding: 20,
+    padding: 5,
     flex: 1,
     flexWrap: "wrap",
     alignContent: "space-around",
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   iconTextContainerWide: {
     flexDirection: "row",
-    width: 500,
+    width: 545,
     marginBottom: 10
   },
   innerText: {

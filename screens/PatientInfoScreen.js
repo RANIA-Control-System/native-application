@@ -7,8 +7,10 @@ import DocumentLoader from "../components/DocumentLoader";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     backgroundColor: "#fff"
+  },
+  centerView: {
+    alignItems: "center"
   },
   pageText: {
     fontSize: 30,
@@ -31,18 +33,20 @@ export default function PatientInfoScreen(props) {
           <ScrollView
             style={{ ...styles.container, fontFamily: value.mainFont }}
           >
-            <PatientInfo />
-            <Text
-              style={{ ...styles.pageText, fontFamily: value.brandingFont }}
-            >
-              Medical Documents:
-            </Text>
-            <DocumentLoader />
-            <DocumentLoader />
-            <DocumentLoader />
-            <DocumentLoader />
-            <DocumentLoader />
-            <DocumentLoader />
+            <View style={StyleSheet.centerView}>
+              <PatientInfo />
+              <Text
+                style={{ ...styles.pageText, fontFamily: value.brandingFont }}
+              >
+                Medical Documents:
+              </Text>
+              <DocumentLoader />
+              <DocumentLoader />
+              <DocumentLoader />
+              <DocumentLoader />
+              <DocumentLoader />
+              <DocumentLoader />
+            </View>
           </ScrollView>
         </React.Fragment>
       )}

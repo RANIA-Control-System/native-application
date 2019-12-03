@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform, Text } from "react-native";
+import { Platform, Text, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
@@ -32,7 +32,11 @@ HomeStack.navigationOptions = {
   // drawerLockMode: "locked-open",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
-      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
+      {focused ? (
+        <Text> </Text>
+      ) : (
+        <NavButton text="View" size="sm" navlocation="Home" />
+      )}
     </React.Fragment>
   )
 };
@@ -51,7 +55,11 @@ RemoteStack.navigationOptions = {
   // drawerLockMode: "locked-open",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
-      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
+      {focused ? (
+        <Text> </Text>
+      ) : (
+        <NavButton text="View" size="sm" navlocation="Remote" />
+      )}
     </React.Fragment>
   )
 };
@@ -70,7 +78,11 @@ PatientInfoStack.navigationOptions = {
   // drawerLockMode: "locked-open",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
-      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
+      {focused ? (
+        <Text> </Text>
+      ) : (
+        <NavButton text="View" size="sm" navlocation="Patient" />
+      )}
     </React.Fragment>
   )
 };
@@ -89,7 +101,11 @@ HouseInfoStack.navigationOptions = {
   // drawerLockMode: "locked-open",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
-      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
+      {focused ? (
+        <Text> </Text>
+      ) : (
+        <NavButton text="View" size="sm" navlocation="House" />
+      )}
     </React.Fragment>
   )
 };
@@ -125,7 +141,11 @@ SettingsStack.navigationOptions = {
   title: "Settings",
   drawerIcon: ({ focused }) => (
     <React.Fragment>
-      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
+      {focused ? (
+        <Text> </Text>
+      ) : (
+        <NavButton text="View" size="sm" navlocation="Settings" />
+      )}
     </React.Fragment>
   )
 };
@@ -142,11 +162,19 @@ const tabNavigator = createDrawerNavigator(
   },
   {
     drawerBackgroundColor: Colors.primaryColor,
-    overlayColor: "transparent",
+    overlayColor: Colors.primaryColor,
     drawerType: "slide",
     drawerWidth: 375,
     contentOptions: {
       activeTintColor: Colors.highlightColor,
+      activeBackgroundColor: Colors.highlightColor,
+      activeLabelStyle: {
+        color: Colors.primaryColor
+      },
+      itemStyle: {
+        borderBottomColor: Colors.secondaryColor,
+        borderBottomWidth: StyleSheet.hairlineWidth
+      },
       labelStyle: {
         fontFamily: "young-serif",
         color: "white",

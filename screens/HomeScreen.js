@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   centerView: {
-	      alignItems: "center"
+    alignItems: "center"
   },
   developmentModeText: {
     marginBottom: 20,
@@ -28,21 +28,21 @@ export default function HomeScreen(props) {
     <React.Fragment>
       <TopBar screen="Home" navigation={props.navigation} />
       <ScrollView style={styles.container}>
-	  <View style={styles.centerView}>
-        <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
-        <ModuleItem
-          text="Fall Detection"
-          icon="hiking"
-          navlocation="RemoteVist"
-        />
-        <ModuleItem
-          text="Natural Language"
-          icon="deaf"
-          navlocation="RemoteVist"
-        />
-        <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
-        <DevelopmentModeNotice />
-		</View>
+        <View style={styles.centerViews}>
+          <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
+          <ModuleItem
+            text="Fall Detection"
+            icon="hiking"
+            navlocation="RemoteVist"
+          />
+          <ModuleItem
+            text="Natural Language"
+            icon="deaf"
+            navlocation="RemoteVist"
+          />
+          <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
+          {/* <DevelopmentModeNotice /> */}
+        </View>
       </ScrollView>
     </React.Fragment>
   );
