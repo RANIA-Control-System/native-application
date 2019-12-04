@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScrollView, Text, StyleSheet, Dimensions } from "react-native";
+import { ScrollView, Text, StyleSheet, Dimensions, View } from "react-native";
 import { faHiking, faDeaf, faUserMd } from "@fortawesome/free-solid-svg-icons";
 import TopBar from "../components/TopBar";
 import HouseInfo from "../components/HouseInfo";

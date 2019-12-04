@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { ScrollView, Text, StyleSheet, Dimensions } from "react-native";
+import { ScrollView, Text, StyleSheet, Dimensions, View } from "react-native";
 import { GlobalContext } from "../context/global-context";
 import TopBar from "../components/TopBar";
 import PatientInfo from "../components/PatientInfo";
