@@ -28,7 +28,7 @@ export default function HomeScreen(props) {
     <React.Fragment>
       <TopBar screen="Home" navigation={props.navigation} />
       <ScrollView style={styles.container}>
-        <View style={styles.centerViews}>
+        <View style={styles.centerView}>
           <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
           <ModuleItem
             text="Fall Detection"
