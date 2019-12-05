@@ -177,6 +177,7 @@ const tabNavigator = createDrawerNavigator(
       },
       labelStyle: {
         fontFamily: "young-serif",
+        fontWeight: "200",
         color: "white",
         fontSize: 35,
         marginLeft: 70

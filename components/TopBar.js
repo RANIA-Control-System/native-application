@@ -6,7 +6,8 @@ import { GlobalContext } from "../context/global-context";
 const styles = StyleSheet.create({
   topBarContainer: {
     backgroundColor: Colors.secondaryColor,
-    height: 90,
+    height: 115,
+    paddingTop: 25,
     alignContent: "space-around",
     flexDirection: "row",
     justifyContent: "flex-start",

@@ -26,14 +26,11 @@ export default function PatientInfoScreen(props) {
     <GlobalContext.Consumer>
       {value => (
         <React.Fragment>
-          <TopBar
-            screen={"Patient Information"}
-            navigation={props.navigation}
-          />
+          <TopBar screen={"Patient Info"} navigation={props.navigation} />
           <ScrollView
             style={{ ...styles.container, fontFamily: value.mainFont }}
           >
-            <View style={StyleSheet.centerView}>
+            <View style={styles.centerView}>
               <PatientInfo />
               <Text
                 style={{ ...styles.pageText, fontFamily: value.brandingFont }}

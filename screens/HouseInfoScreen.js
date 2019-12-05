@@ -30,9 +30,9 @@ export default function HouseInfoScreen(props) {
     <GlobalContext.Consumer>
       {value => (
         <React.Fragment>
-          <TopBar screen={"House Information"} navigation={props.navigation} />
+          <TopBar screen={"House Info"} navigation={props.navigation} />
           <ScrollView style={styles.container}>
-            <View stlye={styles.centerView}>
+            <View style={styles.centerView}>
               <HouseInfo />
               <Text
                 style={{ ...styles.pageText, fontFamily: value.brandingFont }}

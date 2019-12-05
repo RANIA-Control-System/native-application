@@ -95,7 +95,9 @@ export default function RemoteVisitScreen(props) {
     fetchVisits();
   }, []);
 
-  const VisitLogs = loggedVisits.map(visit => <VisitLog visit={visit} />);
+  const VisitLogs = loggedVisits.map((visit, index) => (
+    <VisitLog visit={visit} key={index} />
+  ));
   return (
     <GlobalContext.Consumer>
       {value => (
