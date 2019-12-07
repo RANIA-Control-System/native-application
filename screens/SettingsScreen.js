@@ -8,12 +8,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
+    alignItems: "center",
+    flexDirection: "column",
     backgroundColor: "#fff"
   },
   pageText: {
-    fontSize: 30,
+    fontSize: 25,
     marginTop: 20,
-    marginBottom: -50,
+    marginBottom: 20,
     maxWidth: 600,
     alignSelf: "center"
   }

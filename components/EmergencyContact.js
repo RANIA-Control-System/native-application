@@ -40,21 +40,17 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   innerText: {
-    fontSize: 35,
+    fontSize: 30,
     marginTop: 7
   },
   icon: {
     marginRight: 15,
+    marginTop: 10,
     color: Colors.primaryColor
   }
 });
 //@TODO: Implement data fetching for individual contact
 export default function EmergencyContact(props) {
-  const [name, setname] = useState("Heather Cale");
-  const [phoneNumber, setPhoneNumber] = useState("(804)-123-2305");
-  const [residentStatus, setresidentStatus] = useState("Resident");
-  const [relationship, setRelationship] = useState("Wife");
-
   return (
     <GlobalContext.Consumer>
       {value => (
@@ -62,25 +58,25 @@ export default function EmergencyContact(props) {
           <View style={styles.iconTextContainer}>
             <FontAwesomeIcon style={styles.icon} size={35} icon={faUser} />
             <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
-              {name}
+              {props.contact.name}
             </Text>
           </View>
           <View style={styles.iconTextContainer}>
             <FontAwesomeIcon style={styles.icon} size={35} icon={faLink} />
             <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
-              {relationship}
+              {props.contact.relationship}
             </Text>
           </View>
           <View style={styles.iconTextContainer}>
             <FontAwesomeIcon style={styles.icon} size={35} icon={faPhone} />
             <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
-              {phoneNumber}
+              {props.contact.phone}
             </Text>
           </View>
           <View style={styles.iconTextContainer}>
             <FontAwesomeIcon style={styles.icon} size={35} icon={faHome} />
             <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
-              {residentStatus}
+              {props.contact.resident ? "Resident" : "Non-Resident"}
             </Text>
           </View>
         </View>

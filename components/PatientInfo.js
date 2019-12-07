@@ -44,19 +44,20 @@ const styles = StyleSheet.create({
   },
   iconTextContainer: {
     flexDirection: "row",
-    marginBottom: 10
+    marginBottom: 5
   },
   bigText: {
-    fontSize: 50,
+    fontSize: 45,
     marginBottom: 10
   },
   innerText: {
-    fontSize: 35,
+    fontSize: 30,
     marginTop: 7
   },
   icon: {
     fontSize: 40,
     marginRight: 15,
+    marginTop: 10,
     color: Colors.primaryColor
   }
 });

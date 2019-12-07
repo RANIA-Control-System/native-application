@@ -9,10 +9,10 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 const styles = StyleSheet.create({
   itemContainer: {
     backgroundColor: "white",
+    maxWidth: 600,
     margin: 10,
     padding: 25,
     flex: 1,
-    flexWrap: "wrap",
     alignContent: "space-around",
     flexDirection: "column",
     justifyContent: "space-around",
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   bigText: {
-    fontSize: 50,
+    fontSize: 40,
     marginTop: 7
   },
   innerText: {
@@ -47,11 +47,8 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-//@TODO: Implement data fetching for individual home
-export default function HouseInfo(props) {
-  const [address, setAddress] = useState("124 Shady Lane");
-  const [cityStateZip, setCityStateZip] = useState("Morgantown, WV 26501");
 
+export default function HouseInfo(props) {
   return (
     <GlobalContext.Consumer>
       {value => (
@@ -59,11 +56,11 @@ export default function HouseInfo(props) {
           <View style={styles.iconTextContainer}>
             <FontAwesomeIcon style={styles.icon} size={50} icon={faHome} />
             <Text style={{ ...styles.bigText, fontFamily: value.mainFont }}>
-              {address}
+              {props.addressLineOne}
             </Text>
           </View>
           <Text style={{ ...styles.innerText, fontFamily: value.mainFont }}>
-            {cityStateZip}
+            {props.addressLineTwo}
           </Text>
         </View>
       )}

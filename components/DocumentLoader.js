@@ -37,13 +37,14 @@ const styles = StyleSheet.create({
     marginBottom: 10
   },
   innerText: {
-    fontSize: 30,
+    fontSize: 25,
     marginTop: 7
   },
   icon: {
     fontSize: 40,
     marginLeft: 15,
     marginRight: 15,
+    marginBottom: 10,
     color: Colors.primaryColor
   }
 });

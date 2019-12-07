@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   icon: {
     marginLeft: 15,
     marginRight: 15,
+    marginTop: 10,
     color: Colors.primaryColor
   }
 });
