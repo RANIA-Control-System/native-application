@@ -3,7 +3,6 @@ import { ScrollView, Text, StyleSheet, Dimensions, View } from "react-native";
 import { GlobalContext } from "../context/global-context";
 import TopBar from "../components/TopBar";
 import PatientInfo from "../components/PatientInfo";
-import DocumentLoader from "../components/DocumentLoader";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -32,17 +31,6 @@ export default function PatientInfoScreen(props) {
           >
             <View style={styles.centerView}>
               <PatientInfo />
-              <Text
-                style={{ ...styles.pageText, fontFamily: value.brandingFont }}
-              >
-                Medical Documents:
-              </Text>
-              <DocumentLoader />
-              <DocumentLoader />
-              <DocumentLoader />
-              <DocumentLoader />
-              <DocumentLoader />
-              <DocumentLoader />
             </View>
           </ScrollView>
         </React.Fragment>
