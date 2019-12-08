@@ -113,15 +113,14 @@ export default function RemoteVisitScreen(props) {
                 <Text
                   style={{ ...styles.pageText, fontFamily: value.brandingFont }}
                 >
-                  To request a visit, open up the remote visit app MORE INFO
-                  HERE
+                  To request a visit, open up the remote visit app.
                 </Text>
               </ShowViewButton>
               <ShowViewButton text="Attend Visit" size="wide">
                 <Text
                   style={{ ...styles.pageText, fontFamily: value.brandingFont }}
                 >
-                  To attend visit, open up the remote visit app MORE INFO HERE
+                  To attend visit, open up the remote visit app.
                 </Text>
               </ShowViewButton>
               {fetchingState === "offline" ? (

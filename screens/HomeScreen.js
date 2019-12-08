@@ -27,16 +27,8 @@ export default function HomeScreen(props) {
       <ScrollView style={styles.container}>
         <View style={styles.centerView}>
           <ModuleItem text="Remote Visit" icon="user-md" navlocation="Remote" />
-          <ModuleItem
-            text="Fall Detection"
-            icon="hiking"
-            navlocation="RemoteVist"
-          />
-          <ModuleItem
-            text="Natural Language"
-            icon="deaf"
-            navlocation="RemoteVist"
-          />
+          <ModuleItem text="Fall Detection" icon="hiking" navlocation="none" />
+          <ModuleItem text="Natural Language" icon="deaf" navlocation="none" />
           <ModuleItem text="Settings" icon="cogs" navlocation="Settings" />
           {/* <DevelopmentModeNotice /> */}
         </View>

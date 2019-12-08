@@ -3,9 +3,7 @@ import { Platform, Text, StyleSheet } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { createDrawerNavigator } from "react-navigation-drawer";
 
-import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
-import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import RemoteVisitScreen from "../screens/RemoteVisitScreen";
 import PatientInfoScreen from "../screens/PatientInfoScreen";
@@ -111,24 +109,6 @@ HouseInfoStack.navigationOptions = {
 };
 
 HouseInfoStack.path = "";
-
-const LinksStack = createStackNavigator(
-  {
-    Links: LinksScreen
-  },
-  config
-);
-
-LinksStack.navigationOptions = {
-  title: "House Info",
-  drawerIcon: ({ focused }) => (
-    <React.Fragment>
-      {focused ? <Text> </Text> : <NavButton text="View" size="sm" />}
-    </React.Fragment>
-  )
-};
-
-LinksStack.path = "";
 
 const SettingsStack = createStackNavigator(
   {

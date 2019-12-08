@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   innerText: {
     fontSize: 30,
-    marginTop: 7
+    marginTop: 15
   },
   icon: {
     marginLeft: 15,
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     color: Colors.primaryColor
   }
 });
-//@TODO: Implement data fetching for individual document
-export default function DocumentLoader(props) {
+//@TODO: Implement data fetching for individual connection
+export default function RaniaConnection(props) {
   return (
     <GlobalContext.Consumer>
       {value => (

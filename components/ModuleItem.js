@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import Colors from "../constants/Colors";
 import { GlobalContext } from "../context/global-context";
 import NavButton from "./NavButton";
-
+import ShowViewButton from "./ShowViewButton";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 const styles = StyleSheet.create({
@@ -56,7 +56,22 @@ export default function ModuleItem(props) {
               {props.text}
             </Text>
           </View>
-          <NavButton text="View" size="md" navlocation={props.navlocation} />
+          {props.navlocation == "none" ? (
+            <ShowViewButton text="View" size="md">
+              <Text
+                style={{
+                  ...styles.innerText,
+                  fontFamily: value.mainFont,
+                  color: "red",
+                  marginLeft: 20
+                }}
+              >
+                This page is currently in development
+              </Text>
+            </ShowViewButton>
+          ) : (
+            <NavButton text="View" size="md" navlocation={props.navlocation} />
+          )}
         </View>
       )}
     </GlobalContext.Consumer>
